@@ -1,0 +1,106 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "my-custom-plugin/table",
+  "version": "1.0.0",
+  "title": "Modern Table",
+  "category": "text",
+  "icon": "editor-table",
+  "description": "Create modern, responsive tables with custom styling, colors, and layout controls.",
+  "keywords": ["table", "grid", "data", "pricing", "rows"],
+  "textdomain": "my-custom-plugin",
+  "supports": {
+    "align": ["wide", "full"],
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true
+    }
+  },
+  "attributes": {
+    "head": {
+      "type": "array",
+      "default": [
+        {
+          "cells": [
+            { "content": "Header 1", "tag": "th" },
+            { "content": "Header 2", "tag": "th" },
+            { "content": "Header 3", "tag": "th" }
+          ]
+        }
+      ]
+    },
+    "body": {
+      "type": "array",
+      "default": [
+        {
+          "cells": [
+            { "content": "Data 1A", "tag": "td" },
+            { "content": "Data 1B", "tag": "td" },
+            { "content": "Data 1C", "tag": "td" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "Data 2A", "tag": "td" },
+            { "content": "Data 2B", "tag": "td" },
+            { "content": "Data 2C", "tag": "td" }
+          ]
+        }
+      ]
+    },
+    "foot": {
+      "type": "array",
+      "default": [
+        {
+          "cells": [
+            { "content": "Footer 1", "tag": "td" },
+            { "content": "Footer 2", "tag": "td" },
+            { "content": "Footer 3", "tag": "td" }
+          ]
+        }
+      ]
+    },
+    "hasHeaderRow": {
+      "type": "boolean",
+      "default": true
+    },
+    "hasFooterRow": {
+      "type": "boolean",
+      "default": false
+    },
+    "hasFixedLayout": {
+      "type": "boolean",
+      "default": false
+    },
+    "tableStyle": {
+      "type": "string",
+      "default": "modern"
+    },
+    "headerBgColor": {
+      "type": "string",
+      "default": "#2563eb"
+    },
+    "headerTextColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "caption": {
+      "type": "string",
+      "default": ""
+    },
+    "tableWidth": {
+      "type": "string",
+      "default": "100%"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
+  "style": "file:./style.css"
+}

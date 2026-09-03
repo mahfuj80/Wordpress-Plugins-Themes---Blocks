@@ -1,0 +1,155 @@
+/* ==========================================================================
+   Modern Table Block - Shared & Frontend Styles
+   ========================================================================== */
+
+.wp-block-my-custom-plugin-table {
+  margin: 1.75em 0;
+}
+
+.mcp-table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px -1px rgba(0, 0, 0, 0.06), 0 2px 6px -2px rgba(0, 0, 0, 0.04);
+  background: #ffffff;
+}
+
+.mcp-modern-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #1e293b;
+  text-align: left;
+}
+
+.mcp-modern-table.has-fixed-layout {
+  table-layout: fixed;
+}
+
+/* Cell defaults */
+.mcp-modern-table th,
+.mcp-modern-table td {
+  padding: 12px 18px;
+  vertical-align: middle;
+  transition: background-color 0.15s ease;
+}
+
+.mcp-modern-table th {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+}
+
+/* Footer row */
+.mcp-modern-table tfoot td,
+.mcp-modern-table tfoot th {
+  font-weight: 600;
+  background-color: #f8fafc;
+  border-top: 2px solid #e2e8f0;
+}
+
+/* Caption */
+.mcp-table-caption {
+  caption-side: bottom;
+  padding: 10px 14px 4px;
+  font-size: 0.85rem;
+  color: #64748b;
+  font-style: italic;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Style Preset: Modern Clean (Default)
+   -------------------------------------------------------------------------- */
+.table-style-modern tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.table-style-modern tbody tr:last-child {
+  border-bottom: none;
+}
+
+.table-style-modern tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+/* --------------------------------------------------------------------------
+   Style Preset: Striped
+   -------------------------------------------------------------------------- */
+.table-style-striped tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.table-style-striped tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.table-style-striped tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* --------------------------------------------------------------------------
+   Style Preset: Bordered Grid
+   -------------------------------------------------------------------------- */
+.table-style-bordered th,
+.table-style-bordered td {
+  border: 1px solid #e2e8f0;
+}
+
+.table-style-bordered tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+/* --------------------------------------------------------------------------
+   Style Preset: Minimalist
+   -------------------------------------------------------------------------- */
+.table-style-minimal .mcp-table-responsive-wrapper {
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.table-style-minimal tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.table-style-minimal th {
+  border-bottom: 2px solid #cbd5e1;
+}
+
+/* --------------------------------------------------------------------------
+   Style Preset: Dark / Elegant
+   -------------------------------------------------------------------------- */
+.table-style-dark .mcp-table-responsive-wrapper {
+  background-color: #0f172a;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+.table-style-dark .mcp-modern-table {
+  color: #f8fafc;
+}
+
+.table-style-dark tbody tr {
+  border-bottom: 1px solid #1e293b;
+}
+
+.table-style-dark tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.table-style-dark tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-style-dark tfoot td,
+.table-style-dark tfoot th {
+  background-color: #1e293b;
+  border-top: 1px solid #334155;
+  color: #cbd5e1;
+}
+
+.table-style-dark .mcp-table-caption {
+  color: #94a3b8;
+}
