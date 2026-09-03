@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "my-custom-plugin/verification-box",
+  "version": "1.0.0",
+  "title": "Verification / Audit Box",
+  "category": "text",
+  "icon": "awards",
+  "description": "Trust verification box with an angled corner badge, criteria checklist, and testing limitations.",
+  "keywords": ["verified", "trust", "audit", "badge", "testing", "review"],
+  "textdomain": "my-custom-plugin",
+  "supports": {
+    "align": ["wide", "full"],
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "ribbonText": {
+      "type": "string",
+      "default": "VERIFIED"
+    },
+    "ribbonBgColor": {
+      "type": "string",
+      "default": "#2b7a4b"
+    },
+    "headerText": {
+      "type": "string",
+      "default": "TESTED & VERIFIED BY BESTIPTVFINDER"
+    },
+    "section1Title": {
+      "type": "string",
+      "default": "Our Verification Checks"
+    },
+    "section1Intro": {
+      "type": "string",
+      "default": "We reviewed each provider against the same practical buying criteria for German viewers. Our checks covered:"
+    },
+    "checksList": {
+      "type": "string",
+      "default": "Official pricing, free-trial terms, and available refund information\nListed live channel counts, VOD depth, and German content categories\nPicture quality options and peak-hour playback behavior\nCommon television, mobile, desktop, and streaming-device compatibility\nActivation flow, connection limits, navigation, and support availability"
+    },
+    "section2Title": {
+      "type": "string",
+      "default": "Testing Limitations"
+    },
+    "section2Text": {
+      "type": "string",
+      "default": "We did not independently verify distribution rights for every live channel or VOD title. Performance can vary by German region, internet provider, connection speed, device, application, server load, and subscription tier. Large catalog figures are provider claims. Test your preferred categories during the trial and confirm current licensing, prices, refund exclusions, and connection rules before paying."
+    },
+    "borderColor": {
+      "type": "string",
+      "default": "#0f2744"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

@@ -1,0 +1,91 @@
+/* ==========================================================================
+   Smart Notice / Callout Block Styles
+   ========================================================================== */
+
+.mcp-callout-box {
+  margin: 1.5em 0;
+  padding: 16px 20px;
+  border-radius: 8px;
+  border-left: 4px solid #2563eb;
+  background-color: #f8fafc;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #334155;
+  transition: all 0.2s ease;
+}
+
+.mcp-callout-box p {
+  margin: 0 0 0.5em;
+}
+
+.mcp-callout-box p:last-child {
+  margin-bottom: 0;
+}
+
+.mcp-callout-box ul {
+  margin: 8px 0 0 20px;
+  padding: 0;
+}
+
+.mcp-callout-box li {
+  margin-bottom: 6px;
+}
+
+.mcp-callout-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 1.02rem;
+}
+
+.mcp-callout-title-inline {
+  font-weight: 700;
+  color: #0f172a;
+  margin-right: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   Presets
+   -------------------------------------------------------------------------- */
+
+/* Affiliate Disclosure */
+.mcp-callout-disclosure {
+  border-left-color: #1d68bd;
+  background-color: #f8fafc;
+}
+.mcp-callout-disclosure .mcp-callout-title-inline {
+  color: #0f2744;
+}
+
+/* Update Log */
+.mcp-callout-update-log {
+  border-left-color: #16a34a;
+  background-color: #f7fbf8;
+}
+.mcp-callout-update-log .mcp-callout-header {
+  color: #15803d;
+  font-weight: 700;
+}
+.mcp-callout-update-log li strong {
+  color: #15803d;
+}
+
+/* Who Should Choose (Pros) */
+.mcp-callout-recommendation-positive {
+  border-left-color: #2563eb;
+  background-color: #f0f7ff;
+}
+.mcp-callout-recommendation-positive .mcp-callout-title-inline {
+  color: #1e3a8a;
+}
+
+/* Who Should Avoid (Cons) */
+.mcp-callout-recommendation-negative {
+  border-left-color: #ea580c;
+  background-color: #fff8f1;
+}
+.mcp-callout-recommendation-negative .mcp-callout-title-inline {
+  color: #9a3412;
+}

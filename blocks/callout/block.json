@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "my-custom-plugin/callout",
+  "version": "1.0.0",
+  "title": "Smart Notice / Callout",
+  "category": "text",
+  "icon": "megaphone",
+  "description": "Notice and callout box for affiliate disclosures, update logs, and buyer recommendations.",
+  "keywords": ["disclosure", "callout", "notice", "alert", "verdict", "affiliate"],
+  "textdomain": "my-custom-plugin",
+  "supports": {
+    "align": ["wide", "full"],
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "preset": {
+      "type": "string",
+      "default": "disclosure"
+    },
+    "title": {
+      "type": "string",
+      "default": "Affiliate Disclosure:"
+    },
+    "content": {
+      "type": "string",
+      "default": "Some links on this page may be affiliate links. If you buy through these links, BestIPTVFinder may earn a commission at no extra cost to you. This does not affect our review criteria, rankings, manual testing notes, or stated limitations."
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "#2563eb"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "#f8fafc"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

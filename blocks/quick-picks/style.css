@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Quick Picks / Recommendation Cards Grid Styles
+   ========================================================================== */
+
+.mcp-quick-picks-wrapper {
+  margin: 2em 0;
+  padding: 24px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.mcp-quick-picks-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--mcp-cols, 3), 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .mcp-quick-picks-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .mcp-quick-picks-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Individual Pick Card */
+.mcp-pick-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px 18px;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.mcp-pick-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  border-color: #cbd5e1;
+}
+
+/* Badge / Category Tag */
+.mcp-pick-badge {
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #0284c7;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Title & Link */
+.mcp-pick-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #7c3aed;
+  margin-bottom: 6px;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.15s ease;
+}
+
+.mcp-pick-title:hover {
+  color: #5b21b6;
+  text-decoration: underline;
+}
+
+/* Description */
+.mcp-pick-desc {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #475569;
+  margin: 0;
+}
+
+/* Editor Specific helpers */
+.mcp-card-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed #e2e8f0;
+}
+
+.mcp-grid-add-btn {
+  margin-top: 16px;
+  width: 100%;
+  justify-content: center;
+}

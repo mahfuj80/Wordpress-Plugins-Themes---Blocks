@@ -1,0 +1,92 @@
+/* ==========================================================================
+   Verification / Audit Box Styles
+   ========================================================================== */
+
+.mcp-verification-box {
+  position: relative;
+  margin: 2em 0;
+  padding: 24px 30px;
+  border: 1.5px solid #0f2744;
+  border-radius: 12px;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(15, 39, 68, 0.04);
+  color: #334155;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+/* Corner Slanted Ribbon Badge */
+.mcp-corner-ribbon {
+  position: absolute;
+  top: 18px;
+  right: -32px;
+  transform: rotate(25deg);
+  background-color: #2b7a4b;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  padding: 5px 36px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Header Text */
+.mcp-verification-header {
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0f2744;
+  padding-right: 70px; /* Leave space so ribbon doesn't overlap header */
+}
+
+/* Dotted Separator */
+.mcp-verification-divider {
+  border: none;
+  border-bottom: 1.5px dotted #1e3a5f;
+  margin: 12px 0 16px;
+}
+
+/* Section Headings */
+.mcp-verification-section-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f2744;
+  margin: 0 0 6px;
+}
+
+.mcp-verification-intro {
+  margin: 0 0 10px;
+  color: #334155;
+}
+
+/* Checkmarks / Bullets List */
+.mcp-verification-list {
+  margin: 8px 0 16px 20px;
+  padding: 0;
+  color: #334155;
+}
+
+.mcp-verification-list li {
+  margin-bottom: 6px;
+}
+
+/* Limitations Section */
+.mcp-verification-limitations-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f2744;
+  margin: 16px 0 6px;
+}
+
+.mcp-verification-limitations-text {
+  margin: 0;
+  color: #475569;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
