@@ -80,6 +80,7 @@
       var showTitle = attributes.showTitle;
       var showDiffToggle = attributes.showDiffToggle;
       var diffToggleText = attributes.diffToggleText || 'Highlight Differences';
+      var diffMode = attributes.diffMode || 'status';
       var stickyHeader = attributes.stickyHeader;
       var stickyFirstCol = attributes.stickyFirstCol;
       var showTopCta = attributes.showTopCta !== undefined ? attributes.showTopCta : true;
@@ -162,7 +163,14 @@
           var r = JSON.parse( JSON.stringify( row ) );
           if ( ! r.isCategory ) {
             r.cells = r.cells || {};
-            r.cells[ newId ] = { type: 'check', text: 'Yes' };
+            var firstCellKey = Object.keys( r.cells )[0];
+            var firstCell = firstCellKey ? r.cells[ firstCellKey ] : null;
+            var defType = ( firstCell && firstCell.type ) || 'check';
+            r.cells[ newId ] = {
+              type: defType,
+              text: defType === 'text' ? ( firstCell.text || '' ) : '',
+              rating: ( firstCell && firstCell.rating ) || 4.5
+            };
           }
           return r;
         } );
@@ -210,7 +218,7 @@
         var newId = 'row-' + Date.now();
         var initialCells = {};
         items.forEach( function( col ) {
-          initialCells[ col.id ] = { type: 'check', text: 'Yes' };
+          initialCells[ col.id ] = { type: 'check', text: '' };
         } );
 
         var newRow = {
@@ -282,9 +290,15 @@
             rowCopy.cells = rowCopy.cells || {};
             var currentCell = rowCopy.cells[ colId ] || {};
 
+            var assignedText = newText !== undefined ? newText : ( currentCell.text || '' );
+            // If switching from check with generic 'Yes' to cross or dash, don't keep 'Yes' under a cross
+            if ( newType !== undefined && newType !== currentCell.type && assignedText.toLowerCase() === 'yes' && ( newType === 'cross' || newType === 'dash' ) ) {
+              assignedText = '';
+            }
+
             rowCopy.cells[ colId ] = {
               type: newType !== undefined ? newType : ( currentCell.type || 'check' ),
-              text: newText !== undefined ? newText : ( currentCell.text || '' ),
+              text: assignedText,
               rating: newRating !== undefined ? newRating : ( currentCell.rating || 4.5 )
             };
             return rowCopy;
@@ -520,6 +534,16 @@
               label: __( 'Difference Filter Button Text', 'my-custom-plugin' ),
               value: diffToggleText,
               onChange: function( val ) { setAttributes( { diffToggleText: val } ); }
+            } ),
+            el( SelectControl, {
+              label: __( 'Difference Filter Evaluation Mode', 'my-custom-plugin' ),
+              value: diffMode,
+              options: [
+                { label: __( 'Feature Availability (Hide if all ✔ or all ✖)', 'my-custom-plugin' ), value: 'status' },
+                { label: __( 'Strict Values & Text (Also compare subtext notes)', 'my-custom-plugin' ), value: 'strict' }
+              ],
+              onChange: function( val ) { setAttributes( { diffMode: val } ); },
+              help: __( 'Feature Availability hides rows where all products have the feature (all checked) or all lack it. Strict mode also compares custom text notes.', 'my-custom-plugin' )
             } ),
             el( SelectControl, {
               label: __( 'Highlighted Winner Column', 'my-custom-plugin' ),
@@ -1149,6 +1173,7 @@
       var showTitle = attributes.showTitle;
       var showDiffToggle = attributes.showDiffToggle;
       var diffToggleText = attributes.diffToggleText || 'Highlight Differences';
+      var diffMode = attributes.diffMode || 'status';
       var stickyHeader = attributes.stickyHeader;
       var stickyFirstCol = attributes.stickyFirstCol;
       var showTopCta = attributes.showTopCta !== undefined ? attributes.showTopCta : true;
@@ -1180,6 +1205,7 @@
 
       var blockProps = useBlockProps.save( {
         className: 'mcp-comparison-chart-wrapper theme-' + themePreset + ' padding-' + cellPadding,
+        'data-diff-mode': diffMode,
         style: {
           '--mcp-cc-radius': borderRadius + 'px',
           '--mcp-cc-primary': primaryColor || undefined,

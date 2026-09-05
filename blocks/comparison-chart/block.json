@@ -128,6 +128,10 @@
       "type": "string",
       "default": "Highlight Differences"
     },
+    "diffMode": {
+      "type": "string",
+      "default": "status"
+    },
     "stickyHeader": {
       "type": "boolean",
       "default": true
