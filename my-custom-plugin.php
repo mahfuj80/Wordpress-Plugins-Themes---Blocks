@@ -22,6 +22,8 @@ function mcp_register_all_blocks() {
 	register_block_type( __DIR__ . '/blocks/verification-box' );
 	register_block_type( __DIR__ . '/blocks/quick-picks' );
 	register_block_type( __DIR__ . '/blocks/table-of-contents' );
+	register_block_type( __DIR__ . '/blocks/comparison-chart' );
+	register_block_type( __DIR__ . '/blocks/faq' );
 }
 add_action( 'init', 'mcp_register_all_blocks' );
 

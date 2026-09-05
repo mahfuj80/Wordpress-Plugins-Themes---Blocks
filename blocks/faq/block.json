@@ -1,0 +1,145 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "my-custom-plugin/faq",
+  "version": "1.0.0",
+  "title": "FAQ & Accordion Suite",
+  "category": "text",
+  "icon": "editor-help",
+  "description": "Modern, highly customizable FAQ and accordion block with 4 design presets (bordered cards, elevated floating, grouped dividers, and soft tint), icon styles, and SEO FAQPage Schema.",
+  "keywords": ["faq", "accordion", "questions", "answers", "toggle", "collapsible"],
+  "textdomain": "my-custom-plugin",
+  "supports": {
+    "align": ["wide", "full"],
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true
+    }
+  },
+  "attributes": {
+    "items": {
+      "type": "array",
+      "default": [
+        {
+          "id": "faq-1",
+          "question": "What payment methods do you accept?",
+          "answer": "We accept all major credit and debit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, Google Pay, and secure bank transfers.",
+          "isOpen": false
+        },
+        {
+          "id": "faq-2",
+          "question": "Can I change my plan later?",
+          "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately and any remaining balance is automatically prorated.",
+          "isOpen": true
+        },
+        {
+          "id": "faq-3",
+          "question": "Is there a refund policy?",
+          "answer": "Yes! We offer an unconditional 30-day money-back guarantee. If you're not completely satisfied, simply reach out to our support team for a full refund.",
+          "isOpen": false
+        },
+        {
+          "id": "faq-4",
+          "question": "Is it possible to modify my subscription later?",
+          "answer": "Absolutely. You can update billing details, change renewal frequencies, or pause your subscription directly from your customer dashboard at any time.",
+          "isOpen": false
+        }
+      ]
+    },
+    "stylePreset": {
+      "type": "string",
+      "default": "bordered-cards"
+    },
+    "showHeading": {
+      "type": "boolean",
+      "default": true
+    },
+    "heading": {
+      "type": "string",
+      "default": "Frequently Asked Questions"
+    },
+    "headingTag": {
+      "type": "string",
+      "default": "h2"
+    },
+    "subheading": {
+      "type": "string",
+      "default": "Quick answers to help you get the most out of our service."
+    },
+    "headingAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "iconStyle": {
+      "type": "string",
+      "default": "circle-arrow"
+    },
+    "iconPosition": {
+      "type": "string",
+      "default": "right"
+    },
+    "showNumbering": {
+      "type": "boolean",
+      "default": false
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "#2563eb"
+    },
+    "activeBorderColor": {
+      "type": "string",
+      "default": "#2563eb"
+    },
+    "activeBgColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "cardBgColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "borderColor": {
+      "type": "string",
+      "default": "#e2e8f0"
+    },
+    "titleColor": {
+      "type": "string",
+      "default": "#0f172a"
+    },
+    "contentColor": {
+      "type": "string",
+      "default": "#475569"
+    },
+    "borderRadius": {
+      "type": "number",
+      "default": 14
+    },
+    "itemGap": {
+      "type": "number",
+      "default": 14
+    },
+    "behavior": {
+      "type": "string",
+      "default": "accordion"
+    },
+    "initialState": {
+      "type": "string",
+      "default": "first-open"
+    },
+    "enableSchema": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "style": "file:./style.css",
+  "editorStyle": "file:./editor.css"
+}

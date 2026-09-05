@@ -1,0 +1,407 @@
+/* ==========================================================================
+   FAQ & Accordion Suite - Modern Responsive Styles
+   ========================================================================== */
+
+:root {
+  --mcp-faq-accent: #2563eb;
+  --mcp-faq-card-bg: #ffffff;
+  --mcp-faq-active-bg: #ffffff;
+  --mcp-faq-border-color: #e2e8f0;
+  --mcp-faq-active-border: #2563eb;
+  --mcp-faq-title-color: #0f172a;
+  --mcp-faq-content-color: #475569;
+  --mcp-faq-radius: 14px;
+  --mcp-faq-gap: 14px;
+}
+
+.mcp-faq-wrapper {
+  box-sizing: border-box;
+  margin: 2.5rem 0;
+  width: 100%;
+}
+
+.mcp-faq-wrapper *,
+.mcp-faq-wrapper *::before,
+.mcp-faq-wrapper *::after {
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   Header Section (Title & Subtitle)
+   -------------------------------------------------------------------------- */
+.mcp-faq-header {
+  margin-bottom: 2rem;
+}
+
+.mcp-faq-header.mcp-align-center {
+  text-align: center;
+}
+
+.mcp-faq-header.mcp-align-left {
+  text-align: left;
+}
+
+.mcp-faq-header.mcp-align-right {
+  text-align: right;
+}
+
+.mcp-faq-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  color: var(--mcp-faq-title-color, #0f172a);
+}
+
+.mcp-faq-subtitle {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: #64748b;
+}
+
+/* --------------------------------------------------------------------------
+   FAQ Items Container
+   -------------------------------------------------------------------------- */
+.mcp-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mcp-faq-gap, 14px);
+  width: 100%;
+}
+
+/* Base Item Structure */
+.mcp-faq-item {
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   Design Preset 1: Modern Bordered Cards (Images 1 & 4)
+   -------------------------------------------------------------------------- */
+.mcp-faq-preset-bordered-cards .mcp-faq-item {
+  background-color: var(--mcp-faq-card-bg, #ffffff);
+  border: 1.5px solid var(--mcp-faq-border-color, #e2e8f0);
+  border-radius: var(--mcp-faq-radius, 14px);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
+}
+
+.mcp-faq-preset-bordered-cards .mcp-faq-item:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.04);
+}
+
+.mcp-faq-preset-bordered-cards .mcp-faq-item.mcp-is-open {
+  border-color: var(--mcp-faq-active-border, #0284c7);
+  background-color: var(--mcp-faq-active-bg, #ffffff);
+  box-shadow: 0 4px 18px -2px rgba(37, 99, 235, 0.09), 0 2px 6px -2px rgba(15, 23, 42, 0.04);
+}
+
+/* --------------------------------------------------------------------------
+   Design Preset 2: Elevated Floating Cards (Image 2)
+   -------------------------------------------------------------------------- */
+.mcp-faq-preset-elevated-cards .mcp-faq-item {
+  background-color: var(--mcp-faq-card-bg, #ffffff);
+  border: 1px solid rgba(15, 23, 42, 0.05);
+  border-radius: var(--mcp-faq-radius, 12px);
+  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.03);
+}
+
+.mcp-faq-preset-elevated-cards .mcp-faq-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px -3px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.04);
+}
+
+.mcp-faq-preset-elevated-cards .mcp-faq-item.mcp-is-open {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.12), 0 6px 12px -2px rgba(15, 23, 42, 0.06);
+  border-color: rgba(37, 99, 235, 0.15);
+}
+
+/* --------------------------------------------------------------------------
+   Design Preset 3: Minimalist Grouped Dividers (Image 3)
+   -------------------------------------------------------------------------- */
+.mcp-faq-preset-grouped-bordered .mcp-faq-list {
+  gap: 0;
+  border: 1.5px solid var(--mcp-faq-border-color, #e2e8f0);
+  border-radius: var(--mcp-faq-radius, 8px);
+  background-color: var(--mcp-faq-card-bg, #ffffff);
+  overflow: hidden;
+}
+
+.mcp-faq-preset-grouped-bordered .mcp-faq-item {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1.5px solid var(--mcp-faq-border-color, #e2e8f0);
+}
+
+.mcp-faq-preset-grouped-bordered .mcp-faq-item:last-child {
+  border-bottom: none;
+}
+
+.mcp-faq-preset-grouped-bordered .mcp-faq-item.mcp-is-open {
+  background-color: var(--mcp-faq-active-bg, #fafafa);
+}
+
+/* --------------------------------------------------------------------------
+   Design Preset 4: Soft Filled / Pill Tint (Image 4 variation)
+   -------------------------------------------------------------------------- */
+.mcp-faq-preset-soft-tint .mcp-faq-item {
+  background-color: var(--mcp-faq-card-bg, #f8fafc);
+  border: 1.5px solid var(--mcp-faq-border-color, #e2e8f0);
+  border-radius: var(--mcp-faq-radius, 16px);
+}
+
+.mcp-faq-preset-soft-tint .mcp-faq-item:hover {
+  background-color: #f1f5f9;
+}
+
+.mcp-faq-preset-soft-tint .mcp-faq-item.mcp-is-open {
+  background-color: var(--mcp-faq-active-bg, #f0fdf4);
+  border-color: var(--mcp-faq-active-border, #10b981);
+  box-shadow: 0 4px 16px -2px rgba(16, 185, 129, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   Accordion Trigger Button & Question Text
+   -------------------------------------------------------------------------- */
+.mcp-faq-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  gap: 16px;
+  border-radius: inherit;
+  color: inherit;
+  user-select: none;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  transition: background-color 0.2s ease;
+}
+
+.mcp-faq-trigger:focus-visible {
+  outline: 2px solid var(--mcp-faq-accent, #2563eb);
+  outline-offset: 2px;
+}
+
+.mcp-faq-question {
+  flex: 1;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--mcp-faq-title-color, #0f172a);
+  transition: color 0.2s ease;
+}
+
+.mcp-faq-item.mcp-is-open .mcp-faq-question {
+  color: var(--mcp-faq-title-color, #0f172a);
+}
+
+/* --------------------------------------------------------------------------
+   Icons & Indicators
+   -------------------------------------------------------------------------- */
+.mcp-faq-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+/* 1. Circle Button Chevron (Image 1) */
+.mcp-icon-circle-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid #e2e8f0;
+  background-color: #ffffff;
+  color: #64748b;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.mcp-faq-trigger:hover .mcp-icon-circle-arrow {
+  border-color: #cbd5e1;
+  color: #334155;
+  background-color: #f8fafc;
+}
+
+.mcp-faq-item.mcp-is-open .mcp-icon-circle-arrow {
+  border-color: var(--mcp-faq-accent, #2563eb);
+  color: var(--mcp-faq-accent, #2563eb);
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+.mcp-faq-item.mcp-is-open .mcp-icon-circle-arrow .mcp-chevron-svg {
+  transform: rotate(180deg);
+}
+
+/* 2. Clean Chevron (Images 2 & 3) */
+.mcp-icon-chevron {
+  width: 30px;
+  height: 30px;
+  color: #94a3b8;
+}
+
+.mcp-faq-trigger:hover .mcp-icon-chevron {
+  color: #475569;
+}
+
+.mcp-faq-item.mcp-is-open .mcp-icon-chevron {
+  color: var(--mcp-faq-accent, #2563eb);
+}
+
+.mcp-faq-item.mcp-is-open .mcp-icon-chevron .mcp-chevron-svg {
+  transform: rotate(180deg);
+}
+
+.mcp-chevron-svg {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 3. Plus / Minus Icon */
+.mcp-icon-plusminus {
+  width: 28px;
+  height: 28px;
+  color: #64748b;
+}
+
+.mcp-faq-item.mcp-is-open .mcp-icon-plusminus {
+  color: var(--mcp-faq-accent, #2563eb);
+}
+
+.mcp-plus-svg .mcp-line-vertical {
+  transform-origin: center;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.mcp-faq-item.mcp-is-open .mcp-line-vertical {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+/* Icon Position: Left & Right */
+.mcp-icon-pos-left .mcp-faq-icon {
+  margin-right: 0;
+}
+
+.mcp-icon-pos-right .mcp-faq-icon {
+  margin-left: auto;
+}
+
+/* Dynamic Question Numbering Badge (Q1, Q2...) */
+.mcp-badge-q {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f5f9;
+  color: #475569;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.mcp-faq-item.mcp-is-open .mcp-badge-q {
+  background-color: rgba(37, 99, 235, 0.08);
+  border-color: var(--mcp-faq-active-border, #2563eb);
+  color: var(--mcp-faq-accent, #2563eb);
+}
+
+/* --------------------------------------------------------------------------
+   Smooth Collapse & Content Body
+   -------------------------------------------------------------------------- */
+.mcp-faq-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.mcp-faq-item.mcp-is-open .mcp-faq-collapse {
+  grid-template-rows: 1fr;
+}
+
+.mcp-faq-collapse-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.mcp-faq-answer {
+  padding: 0 22px 20px 22px;
+  font-size: 0.98rem;
+  line-height: 1.68;
+  color: var(--mcp-faq-content-color, #475569);
+}
+
+.mcp-faq-answer p {
+  margin: 0 0 0.85em 0;
+}
+
+.mcp-faq-answer p:last-child {
+  margin-bottom: 0;
+}
+
+.mcp-faq-answer ul,
+.mcp-faq-answer ol {
+  margin: 0.5em 0 0.85em 1.4em;
+  padding: 0;
+}
+
+.mcp-faq-answer li {
+  margin-bottom: 0.35em;
+}
+
+.mcp-faq-answer a {
+  color: var(--mcp-faq-accent, #2563eb);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.mcp-faq-answer a:hover {
+  opacity: 0.8;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Mobile Adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .mcp-faq-title {
+    font-size: 1.65rem;
+  }
+
+  .mcp-faq-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .mcp-faq-trigger {
+    padding: 15px 16px;
+    gap: 12px;
+  }
+
+  .mcp-faq-question {
+    font-size: 0.98rem;
+  }
+
+  .mcp-icon-circle-arrow {
+    width: 32px;
+    height: 32px;
+  }
+
+  .mcp-faq-answer {
+    padding: 0 16px 16px 16px;
+    font-size: 0.92rem;
+  }
+}

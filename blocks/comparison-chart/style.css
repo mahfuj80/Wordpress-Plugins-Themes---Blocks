@@ -1,0 +1,859 @@
+/* ==========================================================================
+   Comparison Chart Block (NN/g UX Optimized) - Frontend & Shared Styles
+   ========================================================================== */
+
+:root {
+  --mcp-cc-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* Base Wrapper */
+.mcp-comparison-chart-wrapper {
+  margin: 2.5rem 0;
+  width: 100%;
+  font-family: var(--mcp-cc-font);
+  box-sizing: border-box;
+}
+
+.mcp-comparison-chart-wrapper * {
+  box-sizing: border-box;
+}
+
+/* Header Area: Title, Subtitle, Differences Toggle */
+.mcp-cc-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.mcp-cc-title-area {
+  flex: 1 1 300px;
+}
+
+.mcp-cc-title {
+  margin: 0 0 0.4rem 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.mcp-cc-subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.75;
+}
+
+/* NN/g Interactive Differences Filter Toggle */
+.mcp-cc-diff-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #f1f5f9;
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.mcp-cc-diff-filter:hover {
+  background: #e2e8f0;
+}
+
+.mcp-cc-diff-filter.is-active {
+  background: var(--mcp-cc-primary, #2563eb);
+  color: #ffffff;
+  border-color: var(--mcp-cc-primary, #2563eb);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+.mcp-cc-diff-switch {
+  position: relative;
+  width: 32px;
+  height: 18px;
+  background: #cbd5e1;
+  border-radius: 9999px;
+  transition: background 0.2s ease;
+}
+
+.mcp-cc-diff-filter.is-active .mcp-cc-diff-switch {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.mcp-cc-diff-switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mcp-cc-diff-filter.is-active .mcp-cc-diff-switch::after {
+  transform: translateX(14px);
+}
+
+/* Responsive Table Container */
+.mcp-cc-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--mcp-cc-radius, 14px);
+  border: 1px solid var(--mcp-cc-border, #e2e8f0);
+  background: var(--mcp-cc-card-bg, #ffffff);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  position: relative;
+}
+
+/* Mobile swipe hint */
+.mcp-cc-mobile-hint {
+  display: none;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  color: #64748b;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  .mcp-cc-mobile-hint {
+    display: block;
+  }
+}
+
+/* Comparison Table Grid */
+.mcp-cc-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--mcp-cc-text, #1e293b);
+  table-layout: auto;
+}
+
+/* Sticky Header on Scroll */
+.mcp-cc-table.has-sticky-header thead th {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+/* Sticky First Column (Feature Labels) on Horizontal Scroll */
+.mcp-cc-table.has-sticky-first-col thead th.mcp-cc-col-label,
+.mcp-cc-table.has-sticky-first-col tbody th.mcp-cc-row-label {
+  position: sticky;
+  left: 0;
+  z-index: 15;
+  background: var(--mcp-cc-card-bg, #ffffff);
+}
+
+.mcp-cc-table.has-sticky-first-col thead th.mcp-cc-col-label {
+  z-index: 25;
+}
+
+.mcp-cc-table.has-sticky-first-col tbody th.mcp-cc-row-label::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -1px;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.06), transparent);
+  pointer-events: none;
+}
+
+/* Header Columns Base */
+.mcp-cc-table thead th {
+  padding: 1.25rem 1rem;
+  vertical-align: top;
+  border-bottom: 2px solid var(--mcp-cc-border, #e2e8f0);
+  background: var(--mcp-cc-header-bg, #f8fafc);
+  color: var(--mcp-cc-header-text, #0f172a);
+  font-weight: 600;
+  text-align: center;
+  min-width: 160px;
+  transition: background 0.15s ease;
+}
+
+/* ==========================================================================
+   HEADER LAYOUT STYLES
+   ========================================================================== */
+
+/* 1. TEXT ONLY / SIMPLE HEADER */
+.header-style-text-only thead th {
+  padding: 0.9rem 1rem;
+  vertical-align: middle;
+}
+
+.header-style-text-only .mcp-cc-product-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* 2. COMPACT HEADER (Title + Price Pill) */
+.header-style-compact thead th {
+  padding: 1rem 1rem;
+  vertical-align: middle;
+}
+
+.mcp-cc-compact-price {
+  display: inline-block;
+  margin-top: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.06);
+  color: inherit;
+}
+
+.is-highlighted .mcp-cc-compact-price {
+  background: var(--mcp-cc-highlight-border, #2563eb);
+  color: #ffffff;
+}
+
+/* 3. PILL-BOX / FLOATING CARD HEADERS (Like original Skincare chart) */
+.header-style-pill-box thead th {
+  background: transparent;
+  padding: 0.75rem 0.5rem;
+  border-bottom: none;
+}
+
+.mcp-cc-pill-card {
+  background: var(--mcp-cc-header-bg, #f8fafc);
+  border: 1px solid var(--mcp-cc-border, #e2e8f0);
+  border-radius: 10px;
+  padding: 1rem 0.85rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.is-highlighted .mcp-cc-pill-card {
+  border-color: var(--mcp-cc-highlight-border, #2563eb);
+  background: var(--mcp-cc-header-highlight-bg, #ffffff);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.12);
+}
+
+/* Header Alignment Options */
+.header-align-left thead th {
+  text-align: left;
+}
+
+.header-align-left .mcp-cc-price-wrap {
+  justify-content: flex-start;
+}
+
+.header-align-left .mcp-cc-col-actions {
+  justify-content: flex-start;
+}
+
+/* ==========================================================================
+   CUSTOMIZABLE TOP-LEFT CORNER ("FEATURES & CRITERIA")
+   ========================================================================== */
+
+.mcp-cc-table thead th.mcp-cc-col-label {
+  text-align: left;
+  min-width: 200px;
+  width: 220px;
+  background: var(--mcp-cc-header-bg, #f8fafc);
+  border-right: 1px solid var(--mcp-cc-border, #e2e8f0);
+  padding: 1rem 1.25rem;
+}
+
+/* Vertical Alignment for Corner */
+.mcp-cc-table thead th.mcp-cc-col-label.valign-middle {
+  vertical-align: middle;
+}
+
+.mcp-cc-table thead th.mcp-cc-col-label.valign-top {
+  vertical-align: top;
+}
+
+.mcp-cc-table thead th.mcp-cc-col-label.valign-bottom {
+  vertical-align: bottom;
+}
+
+/* Corner Content Container */
+.mcp-cc-corner-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.valign-top .mcp-cc-corner-content {
+  justify-content: flex-start;
+}
+
+.valign-bottom .mcp-cc-corner-content {
+  justify-content: flex-end;
+}
+
+.mcp-cc-corner-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: inherit;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.mcp-cc-corner-subtitle {
+  font-size: 0.78rem;
+  font-weight: 400;
+  opacity: 0.75;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.mcp-cc-corner-badge {
+  align-self: flex-start;
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 9999px;
+  background: var(--mcp-cc-primary, #2563eb);
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+/* Embedded Difference Switch inside Top-Left Cell */
+.mcp-cc-corner-diff {
+  margin-top: 0.5rem;
+}
+
+.mcp-cc-corner-diff .mcp-cc-diff-filter {
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.78rem;
+}
+
+/* Highlighted Column Header (Top Pick / Winner) */
+.mcp-cc-table thead th.is-highlighted {
+  background: var(--mcp-cc-header-highlight-bg, #ffffff);
+  border-left: 2px solid var(--mcp-cc-highlight-border, #2563eb);
+  border-right: 2px solid var(--mcp-cc-highlight-border, #2563eb);
+  border-top: 4px solid var(--mcp-cc-highlight-border, #2563eb);
+  position: relative;
+  box-shadow: 0 -4px 14px rgba(37, 99, 235, 0.08);
+}
+
+.mcp-cc-table tbody td.is-highlighted {
+  border-left: 2px solid var(--mcp-cc-highlight-border, #2563eb);
+  border-right: 2px solid var(--mcp-cc-highlight-border, #2563eb);
+  background: var(--mcp-cc-highlight-cell-bg, rgba(37, 99, 235, 0.02));
+}
+
+.mcp-cc-table tbody tr:last-child td.is-highlighted {
+  border-bottom: 2px solid var(--mcp-cc-highlight-border, #2563eb);
+}
+
+/* Winner Badge */
+.mcp-cc-highlight-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: var(--mcp-cc-highlight-border, #2563eb);
+  color: #ffffff;
+  margin-bottom: 0.6rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Item Badges */
+.mcp-cc-item-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.06);
+  color: inherit;
+  margin-bottom: 0.4rem;
+}
+
+/* Product Header Content */
+.mcp-cc-product-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 0.25rem 0;
+}
+
+.mcp-cc-product-subtitle {
+  font-size: 0.8rem;
+  font-weight: 400;
+  opacity: 0.8;
+  margin-bottom: 0.6rem;
+}
+
+.mcp-cc-price-wrap {
+  margin: 0.6rem 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.mcp-cc-price-amount {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.mcp-cc-price-period {
+  font-size: 0.8rem;
+  opacity: 0.75;
+  font-weight: 400;
+}
+
+/* Call to Action Button */
+.mcp-cc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.6rem 0.9rem;
+  margin-top: 0.5rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: var(--mcp-cc-btn-bg, #0f172a);
+  color: var(--mcp-cc-btn-text, #ffffff);
+}
+
+.mcp-cc-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0.95;
+}
+
+.is-highlighted .mcp-cc-btn {
+  background: var(--mcp-cc-primary, #2563eb);
+  color: #ffffff;
+}
+
+/* Category Section Divider Row */
+.mcp-cc-category-row th {
+  background: var(--mcp-cc-cat-bg, #f1f5f9);
+  color: var(--mcp-cc-cat-text, #334155);
+  padding: 0 !important;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-top: 1px solid var(--mcp-cc-border, #e2e8f0);
+  border-bottom: 1px solid var(--mcp-cc-border, #e2e8f0);
+  text-align: left;
+  position: relative;
+}
+
+/* Category Inner Content: Stays Sticky on Horizontal Scroll */
+.mcp-cc-category-inner,
+.mcp-cc-category-row .mcp-cc-category-editor {
+  position: sticky;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  width: fit-content;
+  max-width: 100%;
+  z-index: 12;
+  box-sizing: border-box;
+}
+
+/* Table Body Rows & Cells */
+.mcp-cc-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.mcp-cc-table tbody tr:hover td {
+  background-color: var(--mcp-cc-hover-bg, rgba(0, 0, 0, 0.02));
+}
+
+.mcp-cc-table tbody tr:nth-child(even) td {
+  background-color: var(--mcp-cc-alt-bg, #fafafa);
+}
+
+.mcp-cc-table tbody th.mcp-cc-row-label {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 1px solid var(--mcp-cc-border, #e2e8f0);
+  border-right: 1px solid var(--mcp-cc-border, #e2e8f0);
+  vertical-align: middle;
+}
+
+.mcp-cc-table tbody td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--mcp-cc-border, #e2e8f0);
+  border-right: 1px solid var(--mcp-cc-border, #e2e8f0);
+  vertical-align: middle;
+}
+
+.mcp-cc-table tbody td:last-child {
+  border-right: none;
+}
+
+/* Row Label with Tooltip */
+.mcp-cc-row-label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.mcp-cc-tooltip-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: help;
+  position: relative;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.mcp-cc-tooltip-trigger:hover .mcp-cc-tooltip-content,
+.mcp-cc-tooltip-trigger:focus .mcp-cc-tooltip-content {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mcp-cc-tooltip-content {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: normal;
+  width: 200px;
+  text-align: left;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.15s ease;
+  pointer-events: none;
+}
+
+.mcp-cc-tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #0f172a transparent transparent transparent;
+}
+
+/* Explicit Cell Content Types (Fixing Ambiguous Cells) */
+.mcp-cc-cell-val {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+/* Checkmark Cell */
+.mcp-cc-icon-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--mcp-cc-check-bg, rgba(16, 185, 129, 0.12));
+  color: var(--mcp-cc-check, #10b981);
+}
+
+.mcp-cc-icon-check svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.5;
+}
+
+/* Cross / Absent Cell */
+.mcp-cc-icon-cross {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--mcp-cc-cross-bg, rgba(239, 68, 68, 0.1));
+  color: var(--mcp-cc-cross, #ef4444);
+}
+
+.mcp-cc-icon-cross svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.5;
+}
+
+/* Dash / Partial Cell */
+.mcp-cc-icon-dash {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #94a3b8;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+/* Star Rating Cell */
+.mcp-cc-rating-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.mcp-cc-stars {
+  display: inline-flex;
+  color: #f59e0b;
+  gap: 2px;
+}
+
+.mcp-cc-stars svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+.mcp-cc-rating-num {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #1e293b;
+}
+
+/* Subtext under cell icons */
+.mcp-cc-cell-subtext {
+  font-size: 0.78rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+/* Bottom CTA Row */
+.mcp-cc-table tfoot td {
+  padding: 1.25rem 1rem;
+  background: var(--mcp-cc-header-bg, #f8fafc);
+  border-top: 2px solid var(--mcp-cc-border, #e2e8f0);
+}
+
+.mcp-cc-table tfoot td.is-highlighted {
+  border-left: 2px solid var(--mcp-cc-highlight-border, #2563eb);
+  border-right: 2px solid var(--mcp-cc-highlight-border, #2563eb);
+  border-bottom: 4px solid var(--mcp-cc-highlight-border, #2563eb);
+}
+
+/* Row Filter Animation (Hide identical rows when Differences filter is active) */
+.mcp-cc-table tr.is-hidden-by-diff {
+  display: none !important;
+}
+
+/* ==========================================================================
+   THEME PRESETS
+   ========================================================================== */
+
+/* 🌸 PRESET 1: BLUSH & BEAUTY (Matching the user's reference image!) */
+.theme-blush {
+  --mcp-cc-primary: #d45b70;
+  --mcp-cc-header-bg: #e28292;
+  --mcp-cc-header-text: #ffffff;
+  --mcp-cc-card-bg: #fffdfd;
+  --mcp-cc-border: #f8ccd3;
+  --mcp-cc-alt-bg: #fff5f7;
+  --mcp-cc-hover-bg: #ffeef2;
+  --mcp-cc-highlight-border: #d45b70;
+  --mcp-cc-highlight-cell-bg: rgba(212, 91, 112, 0.04);
+  --mcp-cc-check: #d45b70;
+  --mcp-cc-check-bg: rgba(212, 91, 112, 0.12);
+  --mcp-cc-cross: #94a3b8;
+  --mcp-cc-cross-bg: #f1f5f9;
+  --mcp-cc-cat-bg: #fae1e6;
+  --mcp-cc-cat-text: #8c2537;
+  --mcp-cc-btn-bg: #d45b70;
+  --mcp-cc-btn-text: #ffffff;
+}
+
+.theme-blush .mcp-cc-title {
+  color: #d45b70;
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.theme-blush .mcp-cc-table thead th {
+  border-radius: 8px 8px 0 0;
+  background: #e28292;
+  color: #ffffff;
+}
+
+.theme-blush .mcp-cc-table tbody td,
+.theme-blush .mcp-cc-table tbody th {
+  border-color: #fce7ec;
+}
+
+/* 🚀 PRESET 2: MODERN SAAS */
+.theme-modern {
+  --mcp-cc-primary: #2563eb;
+  --mcp-cc-header-bg: #f8fafc;
+  --mcp-cc-header-text: #0f172a;
+  --mcp-cc-card-bg: #ffffff;
+  --mcp-cc-border: #e2e8f0;
+  --mcp-cc-alt-bg: #f8fafc;
+  --mcp-cc-hover-bg: #eff6ff;
+  --mcp-cc-highlight-border: #2563eb;
+  --mcp-cc-highlight-cell-bg: rgba(37, 99, 235, 0.03);
+  --mcp-cc-check: #10b981;
+  --mcp-cc-check-bg: rgba(16, 185, 129, 0.12);
+  --mcp-cc-cross: #ef4444;
+  --mcp-cc-cross-bg: rgba(239, 68, 68, 0.1);
+  --mcp-cc-cat-bg: #f1f5f9;
+  --mcp-cc-cat-text: #334155;
+  --mcp-cc-btn-bg: #0f172a;
+  --mcp-cc-btn-text: #ffffff;
+}
+
+/* 🌿 PRESET 3: CLEAN EMERALD */
+.theme-emerald {
+  --mcp-cc-primary: #059669;
+  --mcp-cc-header-bg: #064e3b;
+  --mcp-cc-header-text: #ffffff;
+  --mcp-cc-card-bg: #ffffff;
+  --mcp-cc-border: #d1fae5;
+  --mcp-cc-alt-bg: #f0fdf4;
+  --mcp-cc-hover-bg: #ecfdf5;
+  --mcp-cc-highlight-border: #059669;
+  --mcp-cc-highlight-cell-bg: rgba(5, 150, 105, 0.04);
+  --mcp-cc-check: #059669;
+  --mcp-cc-check-bg: rgba(5, 150, 105, 0.12);
+  --mcp-cc-cross: #9ca3af;
+  --mcp-cc-cross-bg: #f3f4f6;
+  --mcp-cc-cat-bg: #ecfdf5;
+  --mcp-cc-cat-text: #065f46;
+  --mcp-cc-btn-bg: #059669;
+  --mcp-cc-btn-text: #ffffff;
+}
+
+/* 🌙 PRESET 4: DARK LUXE */
+.theme-dark {
+  --mcp-cc-primary: #818cf8;
+  --mcp-cc-header-bg: #0f172a;
+  --mcp-cc-header-text: #f8fafc;
+  --mcp-cc-card-bg: #1e293b;
+  --mcp-cc-text: #f1f5f9;
+  --mcp-cc-border: #334155;
+  --mcp-cc-alt-bg: #182234;
+  --mcp-cc-hover-bg: #283548;
+  --mcp-cc-highlight-border: #818cf8;
+  --mcp-cc-highlight-cell-bg: rgba(129, 140, 248, 0.06);
+  --mcp-cc-check: #38bdf8;
+  --mcp-cc-check-bg: rgba(56, 189, 248, 0.15);
+  --mcp-cc-cross: #f43f5e;
+  --mcp-cc-cross-bg: rgba(244, 63, 94, 0.15);
+  --mcp-cc-cat-bg: #090e17;
+  --mcp-cc-cat-text: #cbd5e1;
+  --mcp-cc-btn-bg: #6366f1;
+  --mcp-cc-btn-text: #ffffff;
+}
+
+.theme-dark .mcp-cc-title {
+  color: #f8fafc;
+}
+
+.theme-dark .mcp-cc-diff-filter {
+  background: #334155;
+  color: #f8fafc;
+  border-color: #475569;
+}
+
+.theme-dark .mcp-cc-tooltip-trigger {
+  background: #334155;
+  color: #cbd5e1;
+}
+
+/* ⚡ PRESET 5: MINIMALIST */
+.theme-minimal {
+  --mcp-cc-primary: #000000;
+  --mcp-cc-header-bg: #ffffff;
+  --mcp-cc-header-text: #000000;
+  --mcp-cc-card-bg: #ffffff;
+  --mcp-cc-border: #e5e5e5;
+  --mcp-cc-alt-bg: #fafafa;
+  --mcp-cc-hover-bg: #f5f5f5;
+  --mcp-cc-highlight-border: #000000;
+  --mcp-cc-highlight-cell-bg: rgba(0, 0, 0, 0.02);
+  --mcp-cc-check: #000000;
+  --mcp-cc-check-bg: #f0f0f0;
+  --mcp-cc-cross: #999999;
+  --mcp-cc-cross-bg: #f5f5f5;
+  --mcp-cc-cat-bg: #f5f5f5;
+  --mcp-cc-cat-text: #000000;
+  --mcp-cc-btn-bg: #000000;
+  --mcp-cc-btn-text: #ffffff;
+}
+
+/* Padding scale options */
+.padding-compact .mcp-cc-table th,
+.padding-compact .mcp-cc-table td {
+  padding: 0.65rem 0.75rem;
+}
+
+.padding-spacious .mcp-cc-table th,
+.padding-spacious .mcp-cc-table td {
+  padding: 1.35rem 1.5rem;
+}

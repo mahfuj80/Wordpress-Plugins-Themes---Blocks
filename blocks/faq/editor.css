@@ -1,0 +1,276 @@
+/* ==========================================================================
+   FAQ & Accordion Suite - Gutenberg Editor Styles
+   ========================================================================== */
+
+.mcp-faq-wrapper.mcp-faq-wrapper {
+  position: relative;
+}
+
+/* Header editing */
+.mcp-faq-header .mcp-faq-title {
+  outline: none;
+  min-height: 1.2em;
+}
+
+.mcp-faq-header .mcp-faq-subtitle {
+  outline: none;
+  min-height: 1.2em;
+}
+
+/* --------------------------------------------------------------------------
+   Editor Helper Toolbar (Expand All Answers / Collapse All)
+   -------------------------------------------------------------------------- */
+.mcp-faq-editor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 14px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mcp-editor-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mcp-hint-badge {
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mcp-hint-text {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* --------------------------------------------------------------------------
+   Item Question Row in Editor
+   -------------------------------------------------------------------------- */
+.mcp-faq-trigger.mcp-editor-trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: inherit;
+  padding: 14px 18px;
+}
+
+.mcp-badge-q {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  flex-shrink: 0;
+  letter-spacing: -0.02em;
+}
+
+.mcp-faq-question-wrap {
+  flex: 1;
+}
+
+.mcp-faq-question-wrap .mcp-faq-question {
+  display: block;
+  width: 100%;
+  outline: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.mcp-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.mcp-icon-left-wrap {
+  margin-right: 4px;
+}
+
+.mcp-icon-right-wrap {
+  margin-left: auto;
+}
+
+.mcp-btn-toggle-answer.components-button {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  height: 28px !important;
+  padding: 0 10px !important;
+  border-radius: 6px !important;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Action buttons per item */
+.mcp-item-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+
+.mcp-faq-item:hover .mcp-item-actions,
+.mcp-faq-item:focus-within .mcp-item-actions {
+  opacity: 1;
+}
+
+.mcp-action-btn.components-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  color: #64748b !important;
+  background-color: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.mcp-action-btn.components-button svg {
+  display: block;
+}
+
+.mcp-action-btn.components-button:hover {
+  color: #0f172a !important;
+  background-color: #e2e8f0 !important;
+  border-color: #94a3b8 !important;
+}
+
+.mcp-action-delete.components-button:hover {
+  color: #dc2626 !important;
+  background-color: #fee2e2 !important;
+  border-color: #fca5a5 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Answer Section in Editor (High Visibility!)
+   -------------------------------------------------------------------------- */
+.mcp-faq-content-editor {
+  padding: 10px 18px 18px 18px;
+  border-top: 1.5px dashed #cbd5e1;
+  background: #fafafa;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  animation: mcpEditorFadeIn 0.2s ease-out;
+}
+
+@keyframes mcpEditorFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mcp-faq-answer-meta-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.mcp-badge-a {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #2563eb;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 2px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.mcp-answer-help-text {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.mcp-faq-answer-input-box {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 12px 16px;
+  min-height: 64px;
+  cursor: text;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mcp-faq-answer-input-box:focus-within {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.mcp-faq-answer-input-box .mcp-faq-answer {
+  outline: none;
+  min-height: 48px;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: #1e293b;
+}
+
+.mcp-faq-answer-input-box .mcp-faq-answer[data-rich-text-placeholder]::before {
+  color: #94a3b8 !important;
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   Add Item Button Bar
+   -------------------------------------------------------------------------- */
+.mcp-faq-editor-add-bar {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.mcp-faq-add-btn.components-button {
+  height: 42px;
+  padding: 0 24px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+  transition: all 0.2s ease;
+}
+
+.mcp-faq-add-btn.components-button:hover {
+  background-color: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px);
+}

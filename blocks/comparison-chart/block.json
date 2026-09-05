@@ -1,0 +1,331 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "my-custom-plugin/comparison-chart",
+  "version": "1.0.0",
+  "title": "Comparison Chart (NN/g UX)",
+  "category": "text",
+  "icon": "chart-bar",
+  "description": "Professional, highly customizable comparison chart grounded in Nielsen Norman Group UX principles. Features sticky headers, highlight badges, difference toggle, rich cell types, and responsive mobile layouts.",
+  "keywords": ["comparison", "chart", "table", "product compare", "pricing", "review", "nng"],
+  "textdomain": "my-custom-plugin",
+  "supports": {
+    "align": ["wide", "full"],
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true
+    }
+  },
+  "attributes": {
+    "themePreset": {
+      "type": "string",
+      "default": "blush"
+    },
+    "title": {
+      "type": "string",
+      "default": "Skincare Brand Comparison Chart"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Side-by-side evaluation based on dermatological performance, texture, and value"
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "showDiffToggle": {
+      "type": "boolean",
+      "default": true
+    },
+    "diffToggleText": {
+      "type": "string",
+      "default": "Highlight Differences"
+    },
+    "stickyHeader": {
+      "type": "boolean",
+      "default": true
+    },
+    "stickyFirstCol": {
+      "type": "boolean",
+      "default": true
+    },
+    "showTopCta": {
+      "type": "boolean",
+      "default": true
+    },
+    "showBottomCta": {
+      "type": "boolean",
+      "default": false
+    },
+    "headerStyle": {
+      "type": "string",
+      "default": "cards"
+    },
+    "showHeaderSubtitles": {
+      "type": "boolean",
+      "default": true
+    },
+    "showHeaderPrices": {
+      "type": "boolean",
+      "default": true
+    },
+    "showHeaderBadges": {
+      "type": "boolean",
+      "default": true
+    },
+    "headerAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "cornerLabel": {
+      "type": "string",
+      "default": "Features & Criteria"
+    },
+    "cornerSubtitle": {
+      "type": "string",
+      "default": ""
+    },
+    "cornerLayout": {
+      "type": "string",
+      "default": "standard"
+    },
+    "cornerBadgeText": {
+      "type": "string",
+      "default": "Overview"
+    },
+    "cornerVAlign": {
+      "type": "string",
+      "default": "middle"
+    },
+    "highlightedColId": {
+      "type": "string",
+      "default": "col-3"
+    },
+    "highlightBadge": {
+      "type": "string",
+      "default": "🏆 Best Overall"
+    },
+    "items": {
+      "type": "array",
+      "default": [
+        {
+          "id": "col-1",
+          "name": "Hanover and Tyke",
+          "subtitle": "Daily Shield SPF 40",
+          "price": "$190",
+          "pricePeriod": "/ 50ml",
+          "badge": "Luxury Pick",
+          "rating": 4.3,
+          "buttonText": "Check Price",
+          "buttonUrl": "#",
+          "buttonNewTab": true,
+          "buttonSponsored": true
+        },
+        {
+          "id": "col-2",
+          "name": "Salford & Co.",
+          "subtitle": "Lightweight Hydrator",
+          "price": "$115",
+          "pricePeriod": "/ 50ml",
+          "badge": "Budget Pick",
+          "rating": 4.5,
+          "buttonText": "Check Price",
+          "buttonUrl": "#",
+          "buttonNewTab": true,
+          "buttonSponsored": true
+        },
+        {
+          "id": "col-3",
+          "name": "Borcelle",
+          "subtitle": "Triple Repair Complex",
+          "price": "$135",
+          "pricePeriod": "/ 50ml",
+          "badge": "Top Choice",
+          "rating": 4.9,
+          "buttonText": "View Deal",
+          "buttonUrl": "#",
+          "buttonNewTab": true,
+          "buttonSponsored": true
+        },
+        {
+          "id": "col-4",
+          "name": "Fauget",
+          "subtitle": "Matte Pore Control",
+          "price": "$199",
+          "pricePeriod": "/ 50ml",
+          "badge": "Premium",
+          "rating": 4.2,
+          "buttonText": "Check Price",
+          "buttonUrl": "#",
+          "buttonNewTab": true,
+          "buttonSponsored": true
+        },
+        {
+          "id": "col-5",
+          "name": "Liceria Co.",
+          "subtitle": "Barrier Restoring Gel",
+          "price": "$170",
+          "pricePeriod": "/ 50ml",
+          "badge": "Gentle",
+          "rating": 4.6,
+          "buttonText": "Check Price",
+          "buttonUrl": "#",
+          "buttonNewTab": true,
+          "buttonSponsored": true
+        }
+      ]
+    },
+    "rows": {
+      "type": "array",
+      "default": [
+        {
+          "id": "row-cat-1",
+          "isCategory": true,
+          "label": "Formula & Performance"
+        },
+        {
+          "id": "row-price",
+          "isCategory": false,
+          "label": "Price",
+          "tooltip": "Retail price per bottle",
+          "cells": {
+            "col-1": { "type": "text", "text": "$190" },
+            "col-2": { "type": "text", "text": "$115" },
+            "col-3": { "type": "text", "text": "$135" },
+            "col-4": { "type": "text", "text": "$199" },
+            "col-5": { "type": "text", "text": "$170" }
+          }
+        },
+        {
+          "id": "row-texture",
+          "isCategory": false,
+          "label": "Lightweight Texture",
+          "tooltip": "Fast-absorbing formula with zero sticky or oily feeling",
+          "cells": {
+            "col-1": { "type": "cross", "text": "Thick Cream" },
+            "col-2": { "type": "check", "text": "Ultra Fluid" },
+            "col-3": { "type": "check", "text": "Silky Serum" },
+            "col-4": { "type": "check", "text": "Velvet Gel" },
+            "col-5": { "type": "dash", "text": "Moderate" }
+          }
+        },
+        {
+          "id": "row-finish",
+          "isCategory": false,
+          "label": "Radiant Finished Look",
+          "tooltip": "Natural skin-like glow without shine",
+          "cells": {
+            "col-1": { "type": "check", "text": "Dewy" },
+            "col-2": { "type": "cross", "text": "Semi-Matte" },
+            "col-3": { "type": "check", "text": "Natural Radiant" },
+            "col-4": { "type": "check", "text": "Soft Blur" },
+            "col-5": { "type": "check", "text": "Luminous" }
+          }
+        },
+        {
+          "id": "row-cast",
+          "isCategory": false,
+          "label": "Zero White Cast",
+          "tooltip": "Blends invisibly on all skin tones with 100% transparency",
+          "cells": {
+            "col-1": { "type": "check", "text": "Clear" },
+            "col-2": { "type": "check", "text": "Clear" },
+            "col-3": { "type": "check", "text": "100% Invisible" },
+            "col-4": { "type": "cross", "text": "Slight Cast" },
+            "col-5": { "type": "check", "text": "Clear" }
+          }
+        },
+        {
+          "id": "row-cat-2",
+          "isCategory": true,
+          "label": "Safety & Dermatology"
+        },
+        {
+          "id": "row-fragrance",
+          "isCategory": false,
+          "label": "Fragrance-Free",
+          "tooltip": "Free of synthetic parfum and essential oils suitable for sensitive skin",
+          "cells": {
+            "col-1": { "type": "cross", "text": "Light Rose" },
+            "col-2": { "type": "check", "text": "100% Free" },
+            "col-3": { "type": "check", "text": "100% Free" },
+            "col-4": { "type": "check", "text": "100% Free" },
+            "col-5": { "type": "cross", "text": "Botanical" }
+          }
+        },
+        {
+          "id": "row-rating",
+          "isCategory": false,
+          "label": "Editor Rating",
+          "tooltip": "Aggregated expert score out of 5.0",
+          "cells": {
+            "col-1": { "type": "rating", "rating": 4.3 },
+            "col-2": { "type": "rating", "rating": 4.5 },
+            "col-3": { "type": "rating", "rating": 4.9 },
+            "col-4": { "type": "rating", "rating": 4.2 },
+            "col-5": { "type": "rating", "rating": 4.6 }
+          }
+        }
+      ]
+    },
+    "primaryColor": {
+      "type": "string",
+      "default": ""
+    },
+    "headerBgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "headerTextColor": {
+      "type": "string",
+      "default": ""
+    },
+    "altRowBgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "borderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "checkColor": {
+      "type": "string",
+      "default": ""
+    },
+    "crossColor": {
+      "type": "string",
+      "default": ""
+    },
+    "highlightColor": {
+      "type": "string",
+      "default": ""
+    },
+    "cellPadding": {
+      "type": "string",
+      "default": "normal"
+    },
+    "borderRadius": {
+      "type": "number",
+      "default": 14
+    },
+    "mobileMode": {
+      "type": "string",
+      "default": "scroll"
+    },
+    "tableWidth": {
+      "type": "string",
+      "default": "100%"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
+  "style": "file:./style.css",
+  "viewScript": "file:./view.js"
+}

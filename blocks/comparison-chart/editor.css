@@ -1,0 +1,236 @@
+/* ==========================================================================
+   Comparison Chart Block - Gutenberg Editor Controls & Styling
+   ========================================================================== */
+
+.mcp-cc-editor-wrap {
+  position: relative;
+  border: 1px dashed #cbd5e1;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: #fdfdfd;
+}
+
+/* Column Action Bar */
+.mcp-cc-col-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-bottom: 0.4rem;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 0.2rem 0.35rem;
+  border-radius: 6px;
+}
+
+.header-style-text-only .mcp-cc-col-actions {
+  margin-bottom: 0.25rem;
+  padding: 0.15rem 0.25rem;
+}
+
+/* Link Trigger Button in Editor */
+.mcp-cc-btn-editor-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+}
+
+.mcp-cc-link-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.75rem;
+  color: #334155;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.mcp-cc-link-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.mcp-cc-link-btn.has-url {
+  background: #dbeafe;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+/* Corner Section Editor */
+.mcp-cc-corner-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.mcp-cc-corner-editor .mcp-cc-corner-title {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.15);
+  padding-bottom: 2px;
+}
+
+.mcp-cc-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem 0.35rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  border-radius: 4px;
+  color: #475569;
+  transition: all 0.15s ease;
+}
+
+.mcp-cc-action-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.mcp-cc-action-btn.is-delete:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.mcp-cc-action-btn.is-winner {
+  color: #f59e0b;
+}
+
+.mcp-cc-action-btn.is-winner.active {
+  background: #fef3c7;
+  color: #d97706;
+  font-weight: 700;
+}
+
+/* Row Action Controls */
+.mcp-cc-row-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-right: 0.5rem;
+  opacity: 0.4;
+  transition: opacity 0.15s ease;
+}
+
+tr:hover .mcp-cc-row-controls {
+  opacity: 1;
+}
+
+/* Interactive Cell Editor Box */
+.mcp-cc-editable-cell {
+  position: relative;
+  min-height: 48px;
+  padding: 0.4rem;
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+  cursor: pointer;
+}
+
+.mcp-cc-editable-cell:hover {
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+.mcp-cc-editable-cell.is-active-cell {
+  outline: 2px solid #2563eb;
+  background-color: rgba(37, 99, 235, 0.08);
+}
+
+/* Cell Type Quick Selector Bar */
+.mcp-cc-type-picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-bottom: 0.4rem;
+  background: #f8fafc;
+  padding: 0.25rem 0.4rem;
+  border-radius: 9999px;
+  border: 1px solid #e2e8f0;
+}
+
+.mcp-cc-type-opt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 0.72rem;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mcp-cc-type-opt:hover {
+  background: #e2e8f0;
+}
+
+.mcp-cc-type-opt.is-selected {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #1d4ed8;
+}
+
+/* Table Bottom Controls (Add Row, Add Column, Add Category) */
+.mcp-cc-table-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.mcp-cc-btn-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mcp-cc-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mcp-cc-add-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.mcp-cc-add-btn.is-primary {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.mcp-cc-add-btn.is-primary:hover {
+  background: #1d4ed8;
+}
+
+/* Category Row Editor Styling */
+.mcp-cc-category-editor {
+  position: sticky;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content !important;
+  max-width: 100%;
+  z-index: 12;
+}
