@@ -20,6 +20,20 @@
       "padding": true
     }
   },
+  "example": {
+    "attributes": {
+      "ribbonText": "VERIFIED",
+      "ribbonBgColor": "#2b7a4b",
+      "headerText": "TESTED & VERIFIED BY EXPERTS",
+      "section1Title": "Our Verification Checks",
+      "section1Intro": "We reviewed each provider against practical buying criteria:",
+      "checksList": "Official pricing, free-trial terms, and refund policy\nLive channel counts, VOD depth, and category quality\nPlayback stability, server response, and app compatibility",
+      "section2Title": "Testing Limitations",
+      "section2Text": "Performance can vary by region, ISP, connection speed, and device.",
+      "borderColor": "#0f2744"
+    },
+    "viewportWidth": 600
+  },
   "attributes": {
     "ribbonText": {
       "type": "string",

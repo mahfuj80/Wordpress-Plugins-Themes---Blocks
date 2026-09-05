@@ -23,6 +23,86 @@
       "fontSize": true
     }
   },
+  "example": {
+    "attributes": {
+      "title": "Skincare Brand Comparison Chart",
+      "subtitle": "Side-by-side dermatological evaluation",
+      "themePreset": "blush",
+      "headerStyle": "cards",
+      "highlightedColId": "col-3",
+      "highlightBadge": "🏆 Best Overall",
+      "items": [
+        {
+          "id": "col-1",
+          "name": "Hanover & Tyke",
+          "subtitle": "Daily Shield SPF 40",
+          "price": "$190",
+          "pricePeriod": "/ 50ml",
+          "badge": "Luxury Pick",
+          "rating": 4.3,
+          "buttonText": "Check Price"
+        },
+        {
+          "id": "col-2",
+          "name": "Salford & Co.",
+          "subtitle": "Lightweight Hydrator",
+          "price": "$115",
+          "pricePeriod": "/ 50ml",
+          "badge": "Budget Pick",
+          "rating": 4.5,
+          "buttonText": "Check Price"
+        },
+        {
+          "id": "col-3",
+          "name": "Borcelle",
+          "subtitle": "Triple Repair Complex",
+          "price": "$135",
+          "pricePeriod": "/ 50ml",
+          "badge": "Top Choice",
+          "rating": 4.9,
+          "buttonText": "View Deal"
+        }
+      ],
+      "rows": [
+        {
+          "id": "row-cat-1",
+          "isCategory": true,
+          "label": "Formula & Performance"
+        },
+        {
+          "id": "row-price",
+          "isCategory": false,
+          "label": "Price",
+          "cells": {
+            "col-1": { "type": "text", "text": "$190" },
+            "col-2": { "type": "text", "text": "$115" },
+            "col-3": { "type": "text", "text": "$135" }
+          }
+        },
+        {
+          "id": "row-texture",
+          "isCategory": false,
+          "label": "Lightweight Texture",
+          "cells": {
+            "col-1": { "type": "cross", "text": "Thick Cream" },
+            "col-2": { "type": "check", "text": "Ultra Fluid" },
+            "col-3": { "type": "check", "text": "Silky Serum" }
+          }
+        },
+        {
+          "id": "row-rating",
+          "isCategory": false,
+          "label": "Editor Rating",
+          "cells": {
+            "col-1": { "type": "rating", "rating": 4.3 },
+            "col-2": { "type": "rating", "rating": 4.5 },
+            "col-3": { "type": "rating", "rating": 4.9 }
+          }
+        }
+      ]
+    },
+    "viewportWidth": 800
+  },
   "attributes": {
     "themePreset": {
       "type": "string",

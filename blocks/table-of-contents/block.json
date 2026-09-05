@@ -20,6 +20,20 @@
       "padding": true
     }
   },
+  "example": {
+    "attributes": {
+      "title": "📋 In This Guide",
+      "columns": 2,
+      "linkColor": "#7c3aed",
+      "customLinks": [
+        { "text": "1. Quick Comparison Table", "url": "#" },
+        { "text": "2. Evaluation & Testing Criteria", "url": "#" },
+        { "text": "3. Top Recommended Picks", "url": "#" },
+        { "text": "4. Buyer's Guide & Limitations", "url": "#" }
+      ]
+    },
+    "viewportWidth": 600
+  },
   "attributes": {
     "title": {
       "type": "string",

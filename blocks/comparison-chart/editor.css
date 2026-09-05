@@ -234,3 +234,17 @@ tr:hover .mcp-cc-row-controls {
   max-width: 100%;
   z-index: 12;
 }
+
+/* Inserter Live Preview Polish */
+.block-editor-block-preview__content .mcp-cc-col-actions,
+.block-editor-block-preview__content .mcp-cc-row-controls,
+.block-editor-block-preview__content .mcp-cc-type-picker,
+.block-editor-block-preview__content .mcp-cc-table-controls,
+.block-editor-block-preview__content .mcp-cc-link-btn,
+.block-editor-block-preview__content .mcp-cc-tooltip-trigger {
+  display: none !important;
+}
+
+.block-editor-block-preview__content .mcp-cc-editable-cell {
+  cursor: default;
+}

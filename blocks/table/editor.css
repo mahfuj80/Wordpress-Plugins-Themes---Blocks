@@ -123,3 +123,9 @@
   background: #2563eb;
 }
 
+/* Inserter Live Preview Polish */
+.block-editor-block-preview__content .mcp-editor-actions-bar,
+.block-editor-block-preview__content .components-resizable-box__handle {
+  display: none !important;
+}
+

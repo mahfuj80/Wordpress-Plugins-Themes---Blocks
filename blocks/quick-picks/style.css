@@ -98,3 +98,10 @@
   width: 100%;
   justify-content: center;
 }
+
+/* Inserter Live Preview Polish */
+.block-editor-block-preview__content .mcp-card-actions,
+.block-editor-block-preview__content .mcp-grid-add-btn,
+.block-editor-block-preview__content .components-base-control {
+  display: none !important;
+}

@@ -20,6 +20,32 @@
       "padding": true
     }
   },
+  "example": {
+    "attributes": {
+      "columns": 3,
+      "cards": [
+        {
+          "badge": "🏆 BEST OVERALL",
+          "title": "IPTV Harmony",
+          "url": "https://example.com/harmony",
+          "description": "Balanced live access, deepest VOD library, and flexible trial options."
+        },
+        {
+          "badge": "🇩🇪 BEST FOR GERMANY",
+          "title": "TeleCasta IPTV",
+          "url": "https://example.com/telecasta",
+          "description": "German sports coverage, split-screen viewing, and optimized servers."
+        },
+        {
+          "badge": "🛰️ BIGGEST CATALOG",
+          "title": "OSIRISIPTV",
+          "url": "https://example.com/osiris",
+          "description": "Highest listed channel count with a 7-day refund window."
+        }
+      ]
+    },
+    "viewportWidth": 750
+  },
   "attributes": {
     "columns": {
       "type": "number",

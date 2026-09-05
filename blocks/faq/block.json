@@ -23,6 +23,34 @@
       "fontSize": true
     }
   },
+  "example": {
+    "attributes": {
+      "heading": "Frequently Asked Questions",
+      "subheading": "Quick answers to help you get the most out of our service.",
+      "stylePreset": "bordered-cards",
+      "items": [
+        {
+          "id": "faq-1",
+          "question": "What payment methods do you accept?",
+          "answer": "We accept all major credit cards, PayPal, Apple Pay, Google Pay, and secure bank transfers.",
+          "isOpen": true
+        },
+        {
+          "id": "faq-2",
+          "question": "Can I change my plan later?",
+          "answer": "Yes, you can upgrade or downgrade your plan at any time from your dashboard.",
+          "isOpen": false
+        },
+        {
+          "id": "faq-3",
+          "question": "Is there a refund policy?",
+          "answer": "Yes! We offer an unconditional 30-day money-back guarantee.",
+          "isOpen": false
+        }
+      ]
+    },
+    "viewportWidth": 650
+  },
   "attributes": {
     "items": {
       "type": "array",

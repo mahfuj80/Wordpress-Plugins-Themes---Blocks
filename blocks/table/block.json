@@ -23,6 +23,52 @@
       "fontSize": true
     }
   },
+  "example": {
+    "attributes": {
+      "hasHeaderRow": true,
+      "tableStyle": "modern",
+      "headerBgColor": "#2563eb",
+      "headerTextColor": "#ffffff",
+      "head": [
+        {
+          "cells": [
+            { "content": "Service Tier", "tag": "th" },
+            { "content": "Price", "tag": "th" },
+            { "content": "Streams", "tag": "th" },
+            { "content": "Quality", "tag": "th" }
+          ]
+        }
+      ],
+      "body": [
+        {
+          "cells": [
+            { "content": "Starter", "tag": "td" },
+            { "content": "$9.99/mo", "tag": "td" },
+            { "content": "1 Device", "tag": "td" },
+            { "content": "Full HD", "tag": "td" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "Pro (Recommended)", "tag": "td" },
+            { "content": "$19.99/mo", "tag": "td" },
+            { "content": "3 Devices", "tag": "td" },
+            { "content": "4K Ultra HD", "tag": "td" }
+          ],
+          "bgColor": "#eff6ff"
+        },
+        {
+          "cells": [
+            { "content": "Household", "tag": "td" },
+            { "content": "$29.99/mo", "tag": "td" },
+            { "content": "5 Devices", "tag": "td" },
+            { "content": "4K Ultra HD + HDR", "tag": "td" }
+          ]
+        }
+      ]
+    },
+    "viewportWidth": 650
+  },
   "attributes": {
     "head": {
       "type": "array",

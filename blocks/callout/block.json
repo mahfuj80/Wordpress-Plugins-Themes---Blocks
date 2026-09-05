@@ -20,6 +20,16 @@
       "padding": true
     }
   },
+  "example": {
+    "attributes": {
+      "preset": "disclosure",
+      "title": "Affiliate Disclosure:",
+      "content": "Some links on this page may be affiliate links. If you buy through these links, BestIPTVFinder may earn a commission at no extra cost to you. This does not affect our review criteria or rankings.",
+      "accentColor": "#1d68bd",
+      "bgColor": "#f8fafc"
+    },
+    "viewportWidth": 550
+  },
   "attributes": {
     "preset": {
       "type": "string",

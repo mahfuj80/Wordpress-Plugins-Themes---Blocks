@@ -274,3 +274,16 @@
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
   transform: translateY(-1px);
 }
+
+/* Inserter Live Preview Polish */
+.block-editor-block-preview__content .mcp-faq-editor-toolbar,
+.block-editor-block-preview__content .mcp-faq-editor-add-bar,
+.block-editor-block-preview__content .mcp-item-actions,
+.block-editor-block-preview__content .mcp-btn-toggle-answer,
+.block-editor-block-preview__content .mcp-faq-answer-meta-bar {
+  display: none !important;
+}
+
+.block-editor-block-preview__content .mcp-faq-item:not(:first-child) .mcp-faq-content-editor {
+  display: none !important;
+}
