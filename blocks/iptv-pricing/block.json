@@ -1,0 +1,640 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "my-custom-plugin/iptv-pricing",
+  "version": "1.0.0",
+  "title": "IPTV Pricing & Packages",
+  "category": "design",
+  "icon": "tickets-alt",
+  "description": "API-driven IPTV pricing block with M3U/MAG connection selector, device count filter, responsive carousel slider, and customizable dark/light themes.",
+  "keywords": ["iptv", "pricing", "plans", "packages", "subscription", "m3u", "mag", "carousel"],
+  "textdomain": "my-custom-plugin",
+  "supports": {
+    "align": ["wide", "full"],
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "apiUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "autoFetchFrontend": {
+      "type": "boolean",
+      "default": false
+    },
+    "themePreset": {
+      "type": "string",
+      "default": "dark-nebula"
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "#ec4899"
+    },
+    "accentTextColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "#0b0f19"
+    },
+    "cardBgColor": {
+      "type": "string",
+      "default": "#111827"
+    },
+    "cardBorderColor": {
+      "type": "string",
+      "default": "rgba(255, 255, 255, 0.12)"
+    },
+    "titleColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "#cbd5e1"
+    },
+    "priceBgColor": {
+      "type": "string",
+      "default": "#d6287c"
+    },
+    "priceTextColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "buttonBgColor": {
+      "type": "string",
+      "default": "#d6287c"
+    },
+    "buttonTextColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "buttonHoverBgColor": {
+      "type": "string",
+      "default": "#be185d"
+    },
+    "badge": {
+      "type": "string",
+      "default": "Nixon IPTV Subscriptions"
+    },
+    "title": {
+      "type": "string",
+      "default": "Pick Your Nixon IPTV Plan"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "The longer you subscribe, the more you save. All plans include the same premium content just choose what works for you."
+    },
+    "currencySymbol": {
+      "type": "string",
+      "default": "$"
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Order Now"
+    },
+    "deliveryBadge": {
+      "type": "string",
+      "default": "Instant Delivery"
+    },
+    "m3uTabLabel": {
+      "type": "string",
+      "default": "M3U Playlist"
+    },
+    "magTabLabel": {
+      "type": "string",
+      "default": "MAG / Portal"
+    },
+    "columnsDesktop": {
+      "type": "number",
+      "default": 4
+    },
+    "defaultConnectionType": {
+      "type": "string",
+      "default": "M3U"
+    },
+    "defaultDevices": {
+      "type": "number",
+      "default": 1
+    },
+    "carouselMode": {
+      "type": "string",
+      "default": "auto"
+    },
+    "borderRadius": {
+      "type": "number",
+      "default": 14
+    },
+    "openLinksInNewTab": {
+      "type": "boolean",
+      "default": true
+    },
+    "packages": {
+      "type": "array",
+      "default": [
+        {
+          "id": "pkg-m3u-1d-1m",
+          "name": "1 Month Plan",
+          "description": "Ideal starter plan",
+          "devices": 1,
+          "months": 1,
+          "hours": 0,
+          "price": 10,
+          "popular": false,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "M3U",
+          "packageLink": "#order-1m",
+          "directLink": "#order-1m",
+          "features": [
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "TV Guide (EPG)",
+            "100% Up-time",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-m3u-1d-3m",
+          "name": "3 Months Plan",
+          "description": "Great quarterly savings",
+          "devices": 1,
+          "months": 3,
+          "hours": 0,
+          "price": 30,
+          "popular": false,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "M3U",
+          "packageLink": "#order-3m",
+          "directLink": "#order-3m",
+          "features": [
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "TV Guide (EPG)",
+            "100% Up-time",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-m3u-1d-6m",
+          "name": "6 Months Plan",
+          "description": "Half year entertainment",
+          "devices": 1,
+          "months": 6,
+          "hours": 0,
+          "price": 50,
+          "popular": false,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "M3U",
+          "packageLink": "#order-6m",
+          "directLink": "#order-6m",
+          "features": [
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "TV Guide (EPG)",
+            "100% Up-time",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-m3u-1d-1y",
+          "name": "1 Year Plan",
+          "description": "Maximum savings value",
+          "devices": 1,
+          "months": 12,
+          "hours": 0,
+          "price": 80,
+          "popular": true,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "M3U",
+          "packageLink": "#order-1y",
+          "directLink": "#order-1y",
+          "features": [
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "TV Guide (EPG)",
+            "100% Up-time",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-m3u-1d-trial",
+          "name": "24 Hours Trial",
+          "description": "Test before you buy",
+          "devices": 1,
+          "months": 0,
+          "hours": 24,
+          "price": 0,
+          "popular": false,
+          "active": true,
+          "isTrial": true,
+          "connectionType": "M3U",
+          "packageLink": "#trial-m3u",
+          "directLink": "#trial-m3u",
+          "features": [
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "Instant Activation"
+          ]
+        },
+        {
+          "id": "pkg-m3u-2d-1m",
+          "name": "1 Month (2 Devices)",
+          "description": "Simultaneous 2 screens",
+          "devices": 2,
+          "months": 1,
+          "hours": 0,
+          "price": 18,
+          "popular": false,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "M3U",
+          "packageLink": "#order-2d-1m",
+          "directLink": "#order-2d-1m",
+          "features": [
+            "2 Active Connections",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-m3u-2d-3m",
+          "name": "3 Months (2 Devices)",
+          "description": "Simultaneous 2 screens",
+          "devices": 2,
+          "months": 3,
+          "hours": 0,
+          "price": 48,
+          "popular": false,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "M3U",
+          "packageLink": "#order-2d-3m",
+          "directLink": "#order-2d-3m",
+          "features": [
+            "2 Active Connections",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-m3u-2d-6m",
+          "name": "6 Months (2 Devices)",
+          "description": "Simultaneous 2 screens",
+          "devices": 2,
+          "months": 6,
+          "hours": 0,
+          "price": 85,
+          "popular": false,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "M3U",
+          "packageLink": "#order-2d-6m",
+          "directLink": "#order-2d-6m",
+          "features": [
+            "2 Active Connections",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-m3u-2d-1y",
+          "name": "1 Year (2 Devices)",
+          "description": "Best multi-room value",
+          "devices": 2,
+          "months": 12,
+          "hours": 0,
+          "price": 135,
+          "popular": true,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "M3U",
+          "packageLink": "#order-2d-1y",
+          "directLink": "#order-2d-1y",
+          "features": [
+            "2 Active Connections",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-m3u-3d-1m",
+          "name": "1 Month (3 Devices)",
+          "description": "Family 3 screens",
+          "devices": 3,
+          "months": 1,
+          "hours": 0,
+          "price": 25,
+          "popular": false,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "M3U",
+          "packageLink": "#order-3d-1m",
+          "directLink": "#order-3d-1m",
+          "features": [
+            "3 Active Connections",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-m3u-3d-3m",
+          "name": "3 Months (3 Devices)",
+          "description": "Family 3 screens",
+          "devices": 3,
+          "months": 3,
+          "hours": 0,
+          "price": 65,
+          "popular": false,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "M3U",
+          "packageLink": "#order-3d-3m",
+          "directLink": "#order-3d-3m",
+          "features": [
+            "3 Active Connections",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-m3u-3d-6m",
+          "name": "6 Months (3 Devices)",
+          "description": "Family 3 screens",
+          "devices": 3,
+          "months": 6,
+          "hours": 0,
+          "price": 115,
+          "popular": false,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "M3U",
+          "packageLink": "#order-3d-6m",
+          "directLink": "#order-3d-6m",
+          "features": [
+            "3 Active Connections",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-m3u-3d-1y",
+          "name": "1 Year (3 Devices)",
+          "description": "Ultimate family bundle",
+          "devices": 3,
+          "months": 12,
+          "hours": 0,
+          "price": 175,
+          "popular": true,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "M3U",
+          "packageLink": "#order-3d-1y",
+          "directLink": "#order-3d-1y",
+          "features": [
+            "3 Active Connections",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-mag-1d-1m",
+          "name": "1 Month (MAG)",
+          "description": "Direct portal MAC activation",
+          "devices": 1,
+          "months": 1,
+          "hours": 0,
+          "price": 12,
+          "popular": false,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "MAC",
+          "packageLink": "#mag-1m",
+          "directLink": "#mag-1m",
+          "features": [
+            "Direct MAC Stalker Portal",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "TV Guide (EPG)",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-mag-1d-3m",
+          "name": "3 Months (MAG)",
+          "description": "Direct portal MAC activation",
+          "devices": 1,
+          "months": 3,
+          "hours": 0,
+          "price": 32,
+          "popular": false,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "MAC",
+          "packageLink": "#mag-3m",
+          "directLink": "#mag-3m",
+          "features": [
+            "Direct MAC Stalker Portal",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "TV Guide (EPG)",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-mag-1d-6m",
+          "name": "6 Months (MAG)",
+          "description": "Direct portal MAC activation",
+          "devices": 1,
+          "months": 6,
+          "hours": 0,
+          "price": 55,
+          "popular": false,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "MAC",
+          "packageLink": "#mag-6m",
+          "directLink": "#mag-6m",
+          "features": [
+            "Direct MAC Stalker Portal",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "TV Guide (EPG)",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-mag-1d-1y",
+          "name": "1 Year (MAG)",
+          "description": "Direct portal MAC activation",
+          "devices": 1,
+          "months": 12,
+          "hours": 0,
+          "price": 85,
+          "popular": true,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "MAC",
+          "packageLink": "#mag-1y",
+          "directLink": "#mag-1y",
+          "features": [
+            "Direct MAC Stalker Portal",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "TV Guide (EPG)",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-mag-1d-trial",
+          "name": "24 Hours Trial (MAG)",
+          "description": "Test on your MAG box",
+          "devices": 1,
+          "months": 0,
+          "hours": 24,
+          "price": 0,
+          "popular": false,
+          "active": true,
+          "isTrial": true,
+          "connectionType": "MAC",
+          "packageLink": "#mag-trial",
+          "directLink": "#mag-trial",
+          "features": [
+            "Direct MAC Stalker Portal",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "Instant Activation"
+          ]
+        },
+        {
+          "id": "pkg-mag-2d-1m",
+          "name": "1 Month (2 MAG Devices)",
+          "description": "2 Registered MAC Portals",
+          "devices": 2,
+          "months": 1,
+          "hours": 0,
+          "price": 20,
+          "popular": false,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "MAC",
+          "packageLink": "#mag-2d-1m",
+          "directLink": "#mag-2d-1m",
+          "features": [
+            "2 MAG Portals Active",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-mag-2d-1y",
+          "name": "1 Year (2 MAG Devices)",
+          "description": "2 Registered MAC Portals",
+          "devices": 2,
+          "months": 12,
+          "hours": 0,
+          "price": 145,
+          "popular": true,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "MAC",
+          "packageLink": "#mag-2d-1y",
+          "directLink": "#mag-2d-1y",
+          "features": [
+            "2 MAG Portals Active",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "24/7 Support"
+          ]
+        },
+        {
+          "id": "pkg-mag-3d-1y",
+          "name": "1 Year (3 MAG Devices)",
+          "description": "3 Registered MAC Portals",
+          "devices": 3,
+          "months": 12,
+          "hours": 0,
+          "price": 190,
+          "popular": true,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "MAC",
+          "packageLink": "#mag-3d-1y",
+          "directLink": "#mag-3d-1y",
+          "features": [
+            "3 MAG Portals Active",
+            "15,000+ Live TV Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD, FHD & 4K Channels",
+            "24/7 Support"
+          ]
+        }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "style": "file:./style.css",
+  "editorStyle": "file:./editor.css",
+  "render": "file:./render.php"
+}

@@ -1,0 +1,86 @@
+/**
+ * IPTV Pricing Block - Editor Styles
+ */
+.iptv-editor-control-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.iptv-api-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.iptv-api-status.is-success {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.iptv-api-status.is-error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.iptv-api-status.is-loading {
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.iptv-theme-preset-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.iptv-preset-card {
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  background: #ffffff;
+}
+
+.iptv-preset-card:hover {
+  border-color: #94a3b8;
+}
+
+.iptv-preset-card.is-active {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.iptv-preset-preview {
+  height: 28px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+.iptv-preset-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.iptv-editor-badge-pill {
+  display: inline-block;
+  font-size: 10px;
+  background: #2563eb;
+  color: #ffffff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+}
