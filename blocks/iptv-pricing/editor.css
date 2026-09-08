@@ -84,3 +84,34 @@
   border-radius: 4px;
   margin-left: 6px;
 }
+
+/* ==========================================================================
+   Gutenberg Inserter Hover Preview Enhancements
+   ========================================================================== */
+.block-editor-block-preview__content .iptv-pricing-block {
+  padding: 16px 10px !important;
+}
+
+.block-editor-block-preview__content .iptv-header {
+  margin-bottom: 14px !important;
+}
+
+.block-editor-block-preview__content .iptv-title {
+  font-size: 20px !important;
+  margin-bottom: 6px !important;
+}
+
+.block-editor-block-preview__content .iptv-subtitle {
+  font-size: 11px !important;
+}
+
+.block-editor-block-preview__content .iptv-filters {
+  margin-bottom: 14px !important;
+  gap: 10px !important;
+}
+
+.block-editor-block-preview__content .iptv-card {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+

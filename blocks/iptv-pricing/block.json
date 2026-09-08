@@ -20,6 +20,74 @@
       "padding": true
     }
   },
+  "example": {
+    "attributes": {
+      "badge": "Nixon IPTV Subscriptions",
+      "title": "Pick Your Nixon IPTV Plan",
+      "subtitle": "Flexible subscriptions for every budget.",
+      "themePreset": "light-blue",
+      "accentColor": "#2563eb",
+      "accentTextColor": "#ffffff",
+      "bgColor": "#f8fafc",
+      "cardBgColor": "#ffffff",
+      "cardBorderColor": "#e2e8f0",
+      "titleColor": "#0f172a",
+      "textColor": "#475569",
+      "priceBgColor": "#2563eb",
+      "priceTextColor": "#ffffff",
+      "buttonBgColor": "#2563eb",
+      "buttonTextColor": "#ffffff",
+      "columnsDesktop": 2,
+      "defaultConnectionType": "M3U",
+      "defaultDevices": 1,
+      "currencySymbol": "$",
+      "buttonText": "Order Now",
+      "deliveryBadge": "Instant Delivery",
+      "packages": [
+        {
+          "id": "prev-1",
+          "name": "1 Month Plan",
+          "description": "Standard 1 screen",
+          "devices": 1,
+          "months": 1,
+          "hours": 0,
+          "price": 12,
+          "popular": false,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "M3U",
+          "features": [
+            "15,000+ Live Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD & 4K Quality",
+            "24/7 Live Support"
+          ]
+        },
+        {
+          "id": "prev-2",
+          "name": "1 Year Plan",
+          "description": "Best value bundle",
+          "devices": 1,
+          "months": 12,
+          "hours": 0,
+          "price": 75,
+          "popular": true,
+          "active": true,
+          "isTrial": false,
+          "connectionType": "M3U",
+          "features": [
+            "15,000+ Live Channels",
+            "1,30,000+ Movies",
+            "34,000+ Series",
+            "HD & 4K Quality",
+            "24/7 Live Support"
+          ]
+        }
+      ]
+    },
+    "viewportWidth": 720
+  },
   "attributes": {
     "apiUrl": {
       "type": "string",
@@ -134,6 +202,22 @@
       "default": 14
     },
     "openLinksInNewTab": {
+      "type": "boolean",
+      "default": true
+    },
+    "headingTag": {
+      "type": "string",
+      "default": "h2"
+    },
+    "cardHeadingTag": {
+      "type": "string",
+      "default": "h3"
+    },
+    "linkRel": {
+      "type": "string",
+      "default": "sponsored nofollow noopener"
+    },
+    "enableSchema": {
       "type": "boolean",
       "default": true
     },

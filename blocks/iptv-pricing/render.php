@@ -1,6 +1,7 @@
 <?php
 /**
  * Dynamic Server-Side Render for IPTV Pricing & Packages Block
+ * SEO-Optimized with Semantic HTML, Schema.org Structured Data, and 100% Crawlable Markup.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -37,6 +38,12 @@ $columns_desktop    = isset( $attributes['columnsDesktop'] ) ? max( 1, min( 6, (
 $default_conn       = isset( $attributes['defaultConnectionType'] ) ? $attributes['defaultConnectionType'] : 'M3U';
 $default_dev        = isset( $attributes['defaultDevices'] ) ? (int) $attributes['defaultDevices'] : 1;
 $open_new_tab       = ! isset( $attributes['openLinksInNewTab'] ) || $attributes['openLinksInNewTab'];
+
+// SEO Configuration
+$heading_tag        = isset( $attributes['headingTag'] ) && in_array( $attributes['headingTag'], array( 'h1', 'h2', 'h3', 'h4' ), true ) ? $attributes['headingTag'] : 'h2';
+$card_heading_tag   = isset( $attributes['cardHeadingTag'] ) && in_array( $attributes['cardHeadingTag'], array( 'h2', 'h3', 'h4', 'h5', 'div' ), true ) ? $attributes['cardHeadingTag'] : 'h3';
+$link_rel           = isset( $attributes['linkRel'] ) ? esc_attr( $attributes['linkRel'] ) : 'sponsored nofollow noopener';
+$enable_schema      = ! isset( $attributes['enableSchema'] ) || $attributes['enableSchema'];
 
 // Retrieve packages from API cache or block attributes
 $packages = isset( $attributes['packages'] ) && is_array( $attributes['packages'] ) ? $attributes['packages'] : array();
@@ -95,23 +102,6 @@ if ( ! in_array( $default_dev, $available_devices, true ) && ! empty( $available
 	$default_dev = $available_devices[0];
 }
 
-// Filter packages for initial SSR render
-$initial_packages = array();
-foreach ( $packages as $pkg ) {
-	if ( empty( $pkg['active'] ) || ! empty( $pkg['isDeleted'] ) ) {
-		continue;
-	}
-	$c_type     = isset( $pkg['connectionType'] ) ? strtoupper( $pkg['connectionType'] ) : 'M3U';
-	$conn_match = ( 'BOTH' === $c_type ) ||
-		( 'M3U' === $default_conn && 'M3U' === $c_type ) ||
-		( 'MAG' === $default_conn && ( 'MAC' === $c_type || 'MAG' === $c_type ) );
-	$dev_match  = ( (int) ( isset( $pkg['devices'] ) ? $pkg['devices'] : 1 ) ) === $default_dev;
-
-	if ( $conn_match && $dev_match ) {
-		$initial_packages[] = $pkg;
-	}
-}
-
 // Prepare configuration payload for view.js
 $frontend_config = array(
 	'apiUrl'                => $api_url,
@@ -123,6 +113,7 @@ $frontend_config = array(
 	'buttonText'            => $button_text,
 	'deliveryBadge'         => $delivery_badge,
 	'openLinksInNewTab'     => $open_new_tab,
+	'linkRel'               => $link_rel,
 	'packages'              => $packages,
 );
 
@@ -148,21 +139,23 @@ $style_vars = sprintf(
 $wrapper_classes = 'iptv-pricing-block theme-' . $theme_preset;
 ?>
 
-<div class="<?php echo esc_attr( $wrapper_classes ); ?>" style="<?php echo esc_attr( $style_vars ); ?>">
+<section class="<?php echo esc_attr( $wrapper_classes ); ?>" style="<?php echo esc_attr( $style_vars ); ?>" aria-label="<?php echo esc_attr( $title ); ?>">
 	<div class="iptv-container">
 
-		<!-- Header -->
-		<div class="iptv-header">
+		<!-- Header with semantic tag & customizable heading level -->
+		<header class="iptv-header">
 			<?php if ( ! empty( $badge ) ) : ?>
 				<span class="iptv-badge"><?php echo esc_html( $badge ); ?></span>
 			<?php endif; ?>
 			<?php if ( ! empty( $title ) ) : ?>
-				<h2 class="iptv-title"><?php echo esc_html( $title ); ?></h2>
+				<<?php echo esc_html( $heading_tag ); ?> class="iptv-title">
+					<?php echo esc_html( $title ); ?>
+				</<?php echo esc_html( $heading_tag ); ?>>
 			<?php endif; ?>
 			<?php if ( ! empty( $subtitle ) ) : ?>
 				<p class="iptv-subtitle"><?php echo esc_html( $subtitle ); ?></p>
 			<?php endif; ?>
-		</div>
+		</header>
 
 		<!-- Filters Section -->
 		<div class="iptv-filters">
@@ -189,12 +182,13 @@ $wrapper_classes = 'iptv-pricing-block theme-' . $theme_preset;
 			</div>
 
 			<!-- Level 2: Device Count Pills -->
-			<div class="iptv-device-selector">
+			<div class="iptv-device-selector" role="group" aria-label="<?php esc_attr_e( 'Device Count Filter', 'my-custom-plugin' ); ?>">
 				<?php foreach ( $available_devices as $dev ) : ?>
 					<button
 						type="button"
 						class="iptv-device-btn <?php echo ( $dev === $default_dev ) ? 'is-active' : ''; ?>"
-						data-device="<?php echo esc_attr( $dev ); ?>">
+						data-device="<?php echo esc_attr( $dev ); ?>"
+						aria-pressed="<?php echo ( $dev === $default_dev ) ? 'true' : 'false'; ?>">
 						<?php echo esc_html( $dev . ( 1 === $dev ? ' Device' : ' Devices' ) ); ?>
 					</button>
 				<?php endforeach; ?>
@@ -213,13 +207,25 @@ $wrapper_classes = 'iptv-pricing-block theme-' . $theme_preset;
 
 			<div class="iptv-cards-viewport">
 				<div class="iptv-cards-track is-grid">
-					<?php foreach ( $initial_packages as $pkg ) : ?>
+					<?php foreach ( $packages as $pkg ) : ?>
 						<?php
-						$pkg_name   = ! empty( $pkg['name'] ) ? $pkg['name'] : ( ( ! empty( $pkg['months'] ) ? $pkg['months'] : 1 ) . ' Months' );
-						$pkg_price  = isset( $pkg['price'] ) ? $pkg['price'] : 0;
-						$pkg_link   = ! empty( $pkg['packageLink'] ) ? $pkg['packageLink'] : ( ! empty( $pkg['paymentLink'] ) ? $pkg['paymentLink'] : ( ! empty( $pkg['directLink'] ) ? $pkg['directLink'] : '#' ) );
-						$is_popular = ! empty( $pkg['popular'] );
-						$features   = ! empty( $pkg['features'] ) && is_array( $pkg['features'] ) ? $pkg['features'] : array(
+						if ( empty( $pkg['active'] ) || ! empty( $pkg['isDeleted'] ) ) {
+							continue;
+						}
+						$c_type      = isset( $pkg['connectionType'] ) ? strtoupper( $pkg['connectionType'] ) : 'M3U';
+						$pkg_dev     = isset( $pkg['devices'] ) ? (int) $pkg['devices'] : 1;
+						$conn_match  = ( 'BOTH' === $c_type ) ||
+							( 'M3U' === $default_conn && 'M3U' === $c_type ) ||
+							( 'MAG' === $default_conn && ( 'MAC' === $c_type || 'MAG' === $c_type ) );
+						$dev_match   = $pkg_dev === $default_dev;
+						$is_visible  = $conn_match && $dev_match;
+						$conn_cat    = ( 'MAC' === $c_type || 'MAG' === $c_type ) ? 'MAG' : ( 'BOTH' === $c_type ? 'BOTH' : 'M3U' );
+
+						$pkg_name    = ! empty( $pkg['name'] ) ? $pkg['name'] : ( ( ! empty( $pkg['months'] ) ? $pkg['months'] : 1 ) . ' Months' );
+						$pkg_price   = isset( $pkg['price'] ) ? $pkg['price'] : 0;
+						$pkg_link    = ! empty( $pkg['packageLink'] ) ? $pkg['packageLink'] : ( ! empty( $pkg['paymentLink'] ) ? $pkg['paymentLink'] : ( ! empty( $pkg['directLink'] ) ? $pkg['directLink'] : '#' ) );
+						$is_popular  = ! empty( $pkg['popular'] );
+						$features    = ! empty( $pkg['features'] ) && is_array( $pkg['features'] ) ? $pkg['features'] : array(
 							'15,000+ Live TV Channels',
 							'1,30,000+ Movies',
 							'34,000+ Series',
@@ -229,13 +235,19 @@ $wrapper_classes = 'iptv-pricing-block theme-' . $theme_preset;
 							'24/7 Support',
 						);
 						?>
-						<div class="iptv-card <?php echo $is_popular ? 'is-popular' : ''; ?>">
+						<article
+							class="iptv-card <?php echo $is_popular ? 'is-popular' : ''; ?>"
+							data-conn="<?php echo esc_attr( $conn_cat ); ?>"
+							data-device="<?php echo esc_attr( $pkg_dev ); ?>"
+							style="<?php echo $is_visible ? '' : 'display: none;'; ?>">
 							<?php if ( $is_popular ) : ?>
 								<div class="iptv-popular-ribbon"><?php esc_html_e( 'Popular', 'my-custom-plugin' ); ?></div>
 							<?php endif; ?>
 
 							<div class="iptv-card-header">
-								<h3 class="iptv-card-title"><?php echo esc_html( $pkg_name ); ?></h3>
+								<<?php echo esc_html( $card_heading_tag ); ?> class="iptv-card-title">
+									<?php echo esc_html( $pkg_name ); ?>
+								</<?php echo esc_html( $card_heading_tag ); ?>>
 								<?php if ( ! empty( $pkg['description'] ) ) : ?>
 									<p class="iptv-card-desc"><?php echo esc_html( $pkg['description'] ); ?></p>
 								<?php endif; ?>
@@ -261,7 +273,7 @@ $wrapper_classes = 'iptv-pricing-block theme-' . $theme_preset;
 							<ul class="iptv-features">
 								<?php foreach ( $features as $feat ) : ?>
 									<li class="iptv-feature-item">
-										<svg class="iptv-check-icon" viewBox="0 0 20 20" fill="currentColor">
+										<svg class="iptv-check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 											<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
 										</svg>
 										<span><?php echo esc_html( $feat ); ?></span>
@@ -269,18 +281,19 @@ $wrapper_classes = 'iptv-pricing-block theme-' . $theme_preset;
 								<?php endforeach; ?>
 							</ul>
 
-							<div class="iptv-card-footer">
+							<footer class="iptv-card-footer">
 								<a
 									href="<?php echo esc_url( $pkg_link ); ?>"
 									class="iptv-btn-order"
-									<?php echo $open_new_tab ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>>
+									rel="<?php echo esc_attr( $link_rel ); ?>"
+									<?php echo $open_new_tab ? 'target="_blank"' : ''; ?>>
 									<?php echo esc_html( $button_text ); ?>
 								</a>
 								<?php if ( ! empty( $delivery_badge ) ) : ?>
 									<div class="iptv-delivery-note"><?php echo esc_html( $delivery_badge ); ?></div>
 								<?php endif; ?>
-							</div>
-						</div>
+							</footer>
+						</article>
 					<?php endforeach; ?>
 				</div>
 			</div>
@@ -289,10 +302,56 @@ $wrapper_classes = 'iptv-pricing-block theme-' . $theme_preset;
 			<div class="iptv-carousel-dots" style="display: none;"></div>
 		</div>
 
-		<!-- Client Payload Data -->
+		<!-- Client Payload Data for view.js -->
 		<script type="application/json" class="iptv-packages-data">
 			<?php echo wp_json_encode( $frontend_config ); ?>
 		</script>
 
+		<!-- Schema.org Structured Data (JSON-LD) for Search Engine Rich Snippets -->
+		<?php if ( $enable_schema && ! empty( $packages ) ) : ?>
+			<?php
+			$schema_items = array();
+			$pos          = 1;
+			foreach ( $packages as $pkg ) {
+				if ( empty( $pkg['active'] ) || ! empty( $pkg['isDeleted'] ) ) {
+					continue;
+				}
+				$pkg_title   = ! empty( $pkg['name'] ) ? $pkg['name'] : ( ( ! empty( $pkg['months'] ) ? $pkg['months'] : 1 ) . ' Months IPTV Plan' );
+				$pkg_desc    = ! empty( $pkg['description'] ) ? $pkg['description'] : ( $pkg_title . ' with premium live channels, movies, and TV series' );
+				$pkg_pr      = isset( $pkg['price'] ) ? (float) $pkg['price'] : 0.0;
+				$pkg_url     = ! empty( $pkg['packageLink'] ) ? $pkg['packageLink'] : ( ! empty( $pkg['paymentLink'] ) ? $pkg['paymentLink'] : ( ! empty( $pkg['directLink'] ) ? $pkg['directLink'] : '' ) );
+				$pkg_type    = isset( $pkg['connectionType'] ) ? $pkg['connectionType'] : 'IPTV';
+
+				$schema_items[] = array(
+					'@type'    => 'ListItem',
+					'position' => $pos++,
+					'item'     => array(
+						'@type'       => 'Product',
+						'name'        => $pkg_title,
+						'description' => $pkg_desc,
+						'category'    => $pkg_type,
+						'offers'      => array(
+							'@type'         => 'Offer',
+							'price'         => $pkg_pr,
+							'priceCurrency' => 'USD',
+							'availability'  => 'https://schema.org/InStock',
+							'url'           => esc_url( $pkg_url ),
+						),
+					),
+				);
+			}
+
+			$schema_data = array(
+				'@context'        => 'https://schema.org',
+				'@type'           => 'ItemList',
+				'name'            => ! empty( $title ) ? $title : 'IPTV Subscription Plans',
+				'itemListElement' => $schema_items,
+			);
+			?>
+			<script type="application/ld+json">
+				<?php echo wp_json_encode( $schema_data ); ?>
+			</script>
+		<?php endif; ?>
+
 	</div>
-</div>
+</section>

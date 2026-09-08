@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Render each package card
       packages.forEach(function(pkg) {
-        var card = document.createElement('div');
+        var card = document.createElement('article');
         card.className = 'iptv-card' + (pkg.popular ? ' is-popular' : '');
 
         // Popular ribbon
@@ -246,17 +246,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         card.appendChild(featuresList);
 
-        // Footer: Order button & instant delivery badge
-        var footer = document.createElement('div');
+        var footer = document.createElement('footer');
         footer.className = 'iptv-card-footer';
 
         var orderLink = document.createElement('a');
         orderLink.className = 'iptv-btn-order';
         orderLink.textContent = buttonText;
         orderLink.href = pkg.packageLink || pkg.paymentLink || pkg.directLink || '#';
+        orderLink.rel = config.linkRel || 'sponsored nofollow noopener';
         if (openInNewTab) {
           orderLink.target = '_blank';
-          orderLink.rel = 'noopener noreferrer';
         }
         footer.appendChild(orderLink);
 

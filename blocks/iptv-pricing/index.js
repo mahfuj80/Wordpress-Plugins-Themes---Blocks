@@ -129,6 +129,10 @@
       var defaultConnectionType = attributes.defaultConnectionType || 'M3U';
       var defaultDevices = parseInt( attributes.defaultDevices, 10 ) || 1;
       var openLinksInNewTab = attributes.openLinksInNewTab !== false;
+      var headingTag = attributes.headingTag || 'h2';
+      var cardHeadingTag = attributes.cardHeadingTag || 'h3';
+      var linkRel = attributes.linkRel || 'sponsored nofollow noopener';
+      var enableSchema = attributes.enableSchema !== false;
       var packages = Array.isArray( attributes.packages ) ? attributes.packages : [];
 
       // Local Editor State for interactive previewing
@@ -511,6 +515,52 @@
               value: deliveryBadge,
               onChange: function( val ) { setAttributes( { deliveryBadge: val } ); }
             } )
+          ),
+
+          // 5. SEO & Search Engines Panel
+          el(
+            PanelBody,
+            { title: __( '🔍 SEO & Search Engines', 'my-custom-plugin' ), initialOpen: false },
+            el( ToggleControl, {
+              label: __( 'Enable Schema.org Structured Data', 'my-custom-plugin' ),
+              checked: enableSchema,
+              help: __( 'Adds JSON-LD ItemList with Product & Offer schema for Google Rich Snippets.', 'my-custom-plugin' ),
+              onChange: function( val ) { setAttributes( { enableSchema: val } ); }
+            } ),
+            el( SelectControl, {
+              label: __( 'Section Heading Level', 'my-custom-plugin' ),
+              value: headingTag,
+              options: [
+                { label: 'H2 (Standard)', value: 'h2' },
+                { label: 'H3 (Nested Section)', value: 'h3' },
+                { label: 'H4 (Minor Section)', value: 'h4' }
+              ],
+              help: __( 'Maintains semantic heading hierarchy for SEO audit tools (RankMath, Yoast).', 'my-custom-plugin' ),
+              onChange: function( val ) { setAttributes( { headingTag: val } ); }
+            } ),
+            el( SelectControl, {
+              label: __( 'Card Title Heading Level', 'my-custom-plugin' ),
+              value: cardHeadingTag,
+              options: [
+                { label: 'H3 (Recommended)', value: 'h3' },
+                { label: 'H4 (Sub-heading)', value: 'h4' },
+                { label: 'H5 (Minor)', value: 'h5' },
+                { label: 'DIV (Non-heading)', value: 'div' }
+              ],
+              onChange: function( val ) { setAttributes( { cardHeadingTag: val } ); }
+            } ),
+            el( SelectControl, {
+              label: __( 'Outbound Link Relationship (rel)', 'my-custom-plugin' ),
+              value: linkRel,
+              options: [
+                { label: 'sponsored nofollow noopener (Google Recommended for Affiliate/Buy links)', value: 'sponsored nofollow noopener' },
+                { label: 'nofollow noopener (Standard SEO nofollow)', value: 'nofollow noopener' },
+                { label: 'noopener noreferrer (Standard external link)', value: 'noopener noreferrer' },
+                { label: 'dofollow (Passes SEO authority)', value: 'dofollow' }
+              ],
+              help: __( 'Google Search Guidelines recommend rel="sponsored" for commercial & affiliate links.', 'my-custom-plugin' ),
+              onChange: function( val ) { setAttributes( { linkRel: val } ); }
+            } )
           )
         ),
 
@@ -527,7 +577,7 @@
               'div',
               { className: 'iptv-header' },
               badge ? el( 'span', { className: 'iptv-badge' }, badge ) : null,
-              title ? el( 'h2', { className: 'iptv-title' }, title ) : null,
+              title ? el( headingTag, { className: 'iptv-title' }, title ) : null,
               subtitle ? el( 'p', { className: 'iptv-subtitle' }, subtitle ) : null
             ),
 
@@ -657,7 +707,7 @@
                       el(
                         'div',
                         { className: 'iptv-card-header' },
-                        el( 'h3', { className: 'iptv-card-title' }, pkgName ),
+                        el( cardHeadingTag, { className: 'iptv-card-title' }, pkgName ),
                         pkg.description ? el( 'p', { className: 'iptv-card-desc' }, pkg.description ) : null
                       ),
                       el(
