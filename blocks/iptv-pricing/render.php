@@ -10,7 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Attributes extraction
 $api_url            = isset( $attributes['apiUrl'] ) ? esc_url_raw( trim( $attributes['apiUrl'] ) ) : '';
-$auto_fetch         = ! empty( $attributes['autoFetchFrontend'] );
+if ( empty( $api_url ) ) {
+	$api_url = get_option( 'mcp_iptv_api_url', '' );
+}
+
+// Auto-fetch should be active whenever an API URL is configured, unless explicitly turned off
+$auto_fetch         = ! empty( $api_url ) && ( ! isset( $attributes['autoFetchFrontend'] ) || ! empty( $attributes['autoFetchFrontend'] ) );
 $theme_preset       = isset( $attributes['themePreset'] ) ? sanitize_html_class( $attributes['themePreset'] ) : 'dark-nebula';
 $accent_color       = isset( $attributes['accentColor'] ) ? sanitize_hex_color( $attributes['accentColor'] ) : '#d6287c';
 $accent_text_color  = isset( $attributes['accentTextColor'] ) ? sanitize_hex_color( $attributes['accentTextColor'] ) : '#ffffff';
@@ -49,8 +54,12 @@ $enable_schema      = ! isset( $attributes['enableSchema'] ) || $attributes['ena
 $packages = isset( $attributes['packages'] ) && is_array( $attributes['packages'] ) ? $attributes['packages'] : array();
 
 if ( ! empty( $api_url ) ) {
+	$cache_ttl     = (int) get_option( 'mcp_iptv_cache_ttl', 60 );
 	$transient_key = 'iptv_pkg_' . md5( $api_url );
-	$cached_data   = get_transient( $transient_key );
+
+	// Bypass cache for administrators/editors or when refresh/nocache query param is passed
+	$bypass_cache  = ( $cache_ttl <= 0 ) || isset( $_GET['refresh'] ) || isset( $_GET['nocache'] ) || current_user_can( 'edit_posts' );
+	$cached_data   = $bypass_cache ? false : get_transient( $transient_key );
 
 	if ( false !== $cached_data && is_array( $cached_data ) && ! empty( $cached_data ) ) {
 		$packages = $cached_data;
@@ -70,7 +79,9 @@ if ( ! empty( $api_url ) ) {
 					$fetched_packages = isset( $data['packages'] ) ? $data['packages'] : ( isset( $data['data'] ) ? $data['data'] : $data );
 					if ( is_array( $fetched_packages ) && ! empty( $fetched_packages ) ) {
 						$packages = $fetched_packages;
-						set_transient( $transient_key, $packages, HOUR_IN_SECONDS );
+						if ( $cache_ttl > 0 ) {
+							set_transient( $transient_key, $packages, $cache_ttl );
+						}
 						break;
 					}
 				}
@@ -105,6 +116,7 @@ if ( ! in_array( $default_dev, $available_devices, true ) && ! empty( $available
 // Prepare configuration payload for view.js
 $frontend_config = array(
 	'apiUrl'                => $api_url,
+	'restProxyUrl'          => rest_url( 'my-custom-plugin/v1/proxy-packages' ),
 	'autoFetchFrontend'     => $auto_fetch,
 	'columnsDesktop'        => $columns_desktop,
 	'defaultConnectionType' => $default_conn,

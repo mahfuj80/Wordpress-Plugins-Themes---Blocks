@@ -431,35 +431,96 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 150);
     });
 
-    // Optional Live API Fetching on Frontend (uses proxy to bypass CORS)
-    if (config.apiUrl && config.autoFetchFrontend) {
-      var proxyEndpoint = '/wp-json/my-custom-plugin/v1/proxy-packages?url=' + encodeURIComponent(config.apiUrl.trim());
-      fetch(proxyEndpoint)
+    // Helper: Update Schema.org JSON-LD structured data when live packages change
+    function updateSchemaOrg(pkgs) {
+      var schemaScript = block.querySelector('script[type="application/ld+json"]');
+      if (!schemaScript) return;
+      try {
+        var schemaData = JSON.parse(schemaScript.textContent || '{}');
+        var pos = 1;
+        schemaData.itemListElement = pkgs.filter(function(p) {
+          return p.active !== false && !p.isDeleted;
+        }).map(function(pkg) {
+          var title = pkg.name || ( ( pkg.months || 1 ) + ' Months IPTV Plan' );
+          return {
+            '@type': 'ListItem',
+            'position': pos++,
+            'item': {
+              '@type': 'Product',
+              'name': title,
+              'description': pkg.description || ( title + ' with premium live channels, movies, and TV series' ),
+              'category': pkg.connectionType || 'IPTV',
+              'offers': {
+                '@type': 'Offer',
+                'price': parseFloat( pkg.price ) || 0,
+                'priceCurrency': 'USD',
+                'availability': 'https://schema.org/InStock',
+                'url': pkg.packageLink || pkg.paymentLink || pkg.directLink || ''
+              }
+            }
+          };
+        });
+        schemaScript.textContent = JSON.stringify(schemaData);
+      } catch (e) {
+        // Silent fallback
+      }
+    }
+
+    // Helper: Shallow/Deep comparison to avoid unnecessary DOM repaint
+    function arePackagesEqual(listA, listB) {
+      if (!Array.isArray(listA) || !Array.isArray(listB)) return false;
+      if (listA.length !== listB.length) return false;
+      try {
+        return JSON.stringify(listA) === JSON.stringify(listB);
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // Dynamic Live API Fetching on Page Refresh / Load (uses proxy to bypass CORS)
+    if (config.apiUrl && config.autoFetchFrontend !== false) {
+      var baseUrl = config.restProxyUrl || '/wp-json/my-custom-plugin/v1/proxy-packages';
+      var separator = baseUrl.indexOf('?') !== -1 ? '&' : '?';
+      var proxyEndpoint = baseUrl + separator + 'url=' + encodeURIComponent(config.apiUrl.trim()) + '&_t=' + Date.now();
+
+      fetch(proxyEndpoint, {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
+        }
+      })
         .then(function(res) {
-          if (!res.ok) throw new Error('Proxy error');
+          if (!res.ok) throw new Error('Proxy error: ' + res.status);
           return res.json();
         })
         .then(function(result) {
           if (result && result.success && Array.isArray(result.packages)) {
             return result.packages;
           }
-          throw new Error('Invalid packages from proxy');
+          throw new Error('Invalid packages format from proxy');
         })
         .catch(function() {
-          // Fallback to direct fetch
-          return fetch(config.apiUrl).then(function(res) { return res.json(); }).then(function(data) {
-            return Array.isArray(data) ? data : (data.packages || data.data || []);
-          });
+          // Fallback to direct fetch if proxy fails
+          var directUrl = config.apiUrl.trim() + (config.apiUrl.indexOf('?') !== -1 ? '&' : '?') + '_t=' + Date.now();
+          return fetch(directUrl, { cache: 'no-store' })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+              return Array.isArray(data) ? data : (data.packages || data.data || []);
+            });
         })
         .then(function(pkgs) {
           if (Array.isArray(pkgs) && pkgs.length > 0) {
-            allPackages = pkgs;
-            renderDevicePills();
-            renderCards();
+            if (!arePackagesEqual(allPackages, pkgs)) {
+              allPackages = pkgs;
+              renderDevicePills();
+              renderCards();
+              updateSchemaOrg(pkgs);
+            }
           }
         })
         .catch(function(err) {
-          console.warn('IPTV Pricing: Live API fetch skipped, using cached packages.', err);
+          console.warn('IPTV Pricing: Live API fetch skipped or network error, displaying cached packages.', err);
         });
     }
 

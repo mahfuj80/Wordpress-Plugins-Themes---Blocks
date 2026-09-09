@@ -95,7 +95,7 @@
     },
     "autoFetchFrontend": {
       "type": "boolean",
-      "default": false
+      "default": true
     },
     "themePreset": {
       "type": "string",
